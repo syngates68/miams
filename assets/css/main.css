@@ -7,7 +7,8 @@ body
 {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
-    --main : #FDF24C;
+    --main: #FDF24C;
+    --main_complement: #4c57fd;
     --border: #E0E0E0;
     --placeholder: #828282;
     --error: #CD2F2F;
@@ -32,21 +33,22 @@ body
 .alert .message
 {
     margin-left: 8px;
+    line-height: 1.7;
 }
 
 .alert-erreur
 {
-    background:var(--error);
+    background: var(--error);
 }
 
 .alert-succes
 {
-    background:var(--valid);
+    background: var(--valid);
 }
 
 .alert-info
 {
-    background:var(--info);
+    background: var(--info);
 }
 
 .navbar
@@ -141,10 +143,19 @@ footer .footer-copyright .material-icons
     background: url('../img/bg-login.jpg');
 }
 
+.container-inscription
+{
+    background: url('../img/bg-register.jpg');
+}
+
 .container-connexion,
 .container-inscription
 {
     padding: 32px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .bloc-connexion
@@ -157,10 +168,15 @@ footer .footer-copyright .material-icons
     width: 40%;
 }
 
+.container-inscription .bloc-formulaire
+{
+    margin: 100px 0;
+}
+
 .bloc-formulaire
 {
     margin: 100px auto;
-    padding: 32px 16px;
+    padding: 32px 64px;
     background: #FFF;
     border-radius: 5px;
 }
@@ -185,13 +201,9 @@ footer .footer-copyright .material-icons
 
 .bloc-formulaire .input-form.double-input
 {
-    display: flex;
-}
-
-.bloc-formulaire .input-form.double-input input
-{
-    width: 50%;
-    margin: 0 16px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 16px;
 }
 
 .bloc-formulaire .input-form input
@@ -218,14 +230,16 @@ footer .footer-copyright .material-icons
     width: 100%;
     padding: 16px;
     font-weight: 700;
-    text-transform: uppercase;
     background: none;
-    border: 2px solid var(--main);
-    color: #000;
+    border: none;
+    border-radius: 5px;
+    background: var(--main_complement);
+    color: #FFF;
     box-shadow: none;
     font-family: 'Montserrat', sans-serif;
-    font-size: 17px;
+    font-size: 15px;
     cursor: pointer;
+    margin-bottom: 32px;
 }
 
 .bloc-formulaire .bloc-non-membre
@@ -250,16 +264,66 @@ footer .footer-copyright .material-icons
 
 .bloc-formulaire .bloc-social
 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 16px;
+}
+
+.bloc-formulaire .bloc-social .btn-social
+{
+    background: none;
+    padding: 12px 16px;
+    cursor: pointer;
+    border-radius: 5px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    transition-duration: .3s;
+}
+
+.bloc-formulaire .bloc-social .btn-social img
+{
+    width: 20px;
+    margin-right: 8px;
+}
+
+.bloc-formulaire .bloc-social .btn-social.btn-facebook
+{
+    border: 2px solid #3b5998;
+    color: #3b5998;
+}
+
+.bloc-formulaire .bloc-social .btn-social.btn-facebook:hover
+{
+    background: #3b5998;
+    color: #FFF;
+    transition-duration: .3s;
+}
+
+.bloc-formulaire .bloc-social .btn-social.btn-google
+{
+    border: 2px solid var(--border);
+    color: #000;
+}
+
+.bloc-formulaire .bloc-social .btn-social.btn-google:hover
+{
+    background: var(--border);
+    transition-duration: .3s;
 }
 
 @media screen and (max-width: 640px) 
 {
+    .container-connexion,
+    .container-inscription
+    {
+        padding: 8px;
+    }
+
     .bloc-formulaire
     {
         width: 100%;
+        padding: 32px 16px;
     }
 
     .bloc-formulaire .input-form.double-input
@@ -270,7 +334,25 @@ footer .footer-copyright .material-icons
     
     .bloc-formulaire .input-form.double-input input
     {
-        width: 100%;
+        margin: 32px 0;
+    }
+}
+
+@media screen and (min-width: 640px) and (max-width: 1024px)
+{
+    .bloc-formulaire
+    {
+        width: 70%;
+    }
+
+    .bloc-formulaire .input-form.double-input
+    {
+        display: block;
+        padding: 0;
+    }
+    
+    .bloc-formulaire .input-form.double-input input
+    {
         margin: 32px 0;
     }
 }

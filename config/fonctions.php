@@ -19,3 +19,50 @@ function formate_date($date)
 {
     return date("d/m/Y", strtotime($date)); 
 }
+
+function champs_non_vides($valeurs)
+{
+	$is_empty = 1;
+
+	foreach ($valeurs as $v)
+	{
+		if (!isset($_POST[$v]) || empty($_POST[$v]) || str_replace(' ', '', $_POST[$v]) == '')
+		{
+			$is_empty = 0;
+			break;
+		}
+	}
+
+	return $is_empty;
+}
+
+function inscription_utilisateur($nom, $prenom, $mail, $pass)
+{
+	$sql = "INSERT INTO utilisateurs(nom, prenom, mail, pass, date_inscription) VALUES (:nom, :prenom, :mail, :pass, :date_inscription)";
+	$ins = db()->prepare($sql);
+	$ins->execute([
+		'nom' => $nom,
+		'prenom' => $prenom,
+		'mail' => $mail,
+		'pass' => $pass,
+		'date_inscription' => date('Y-m-d H:i:s')
+	]);
+}
+
+function count_utilisateur_by_mail($mail)
+{
+	$sql = "SELECT COUNT(*) FROM utilisateurs WHERE mail = :mail";
+	$count = db()->prepare($sql);
+	$count->execute(['mail' => $mail]);
+	
+	return $count->fetch(PDO::FETCH_NUM)[0];
+}
+
+function req_utilisateur_by_mail($mail)
+{
+	$sql = "SELECT * FROM utilisateurs WHERE mail = :mail";
+	$req = db()->prepare($sql);
+	$req->execute(['mail' => $mail]);
+	
+	return $req->fetch(PDO::FETCH_ASSOC);
+}
