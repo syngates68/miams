@@ -1,0 +1,276 @@
+*
+{
+    box-sizing: border-box;
+}
+
+body
+{
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    --main : #FDF24C;
+    --border: #E0E0E0;
+    --placeholder: #828282;
+    --error: #CD2F2F;
+    --info:  #2FA7CD;
+    --valid: #2FCD8B;
+    --link:  #2f4ccd;
+    --link_hover:  #1d3396; 
+}
+
+.alert
+{
+    padding: 16px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #FFF;
+    margin: 8px 0;
+}
+
+.alert .message
+{
+    margin-left: 8px;
+}
+
+.alert-erreur
+{
+    background:var(--error);
+}
+
+.alert-succes
+{
+    background:var(--valid);
+}
+
+.alert-info
+{
+    background:var(--info);
+}
+
+.navbar
+{
+    padding: 16px 32px;
+    border-bottom: 2px solid var(--main);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #FFF;
+}
+
+.navbar .bloc-logo
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.navbar .bloc-logo img
+{
+    width: 50px;
+}
+
+.navbar .bloc-logo span
+{
+    margin-left: 8px;
+}
+
+.navbar .bloc-lien a
+{
+    color: #000;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+footer
+{
+    background: #363636;
+    color: #FFF;
+    padding: 100px 32px;
+    text-align: center;
+}
+
+footer .footer-social
+{
+    width: 30%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+footer .footer-social .material-icons
+{
+    font-size: 50px;
+}
+
+footer .footer-liens
+{
+    margin-top: 32px;
+}
+
+footer .footer-liens a
+{
+    color: #FFF;
+    text-decoration: none;
+    padding: 0 32px;
+}
+
+footer .footer-copyright
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+footer .footer-copyright .material-icons
+{
+    margin-right: 8px;
+}
+
+.container-connexion
+{
+    background: url('../img/bg-login.jpg');
+}
+
+.container-connexion,
+.container-inscription
+{
+    padding: 32px;
+}
+
+.bloc-connexion
+{
+    width: 25%;
+}
+
+.bloc-inscription
+{
+    width: 40%;
+}
+
+.bloc-formulaire
+{
+    margin: 100px auto;
+    padding: 32px 16px;
+    background: #FFF;
+    border-radius: 5px;
+}
+
+.bloc-formulaire .bloc-logo,
+.bloc-formulaire h1
+{
+    text-align: center;
+}
+
+.bloc-inscription .phrase-accroche
+{
+    line-height: 1.7;
+    font-weight: 600;
+    text-align: center;
+}
+
+.bloc-formulaire .input-form
+{
+    padding: 16px 0;
+}
+
+.bloc-formulaire .input-form.double-input
+{
+    display: flex;
+}
+
+.bloc-formulaire .input-form.double-input input
+{
+    width: 50%;
+    margin: 0 16px;
+}
+
+.bloc-formulaire .input-form input
+{
+    display: block;
+    padding: 16px;
+    border: 1px solid var(--border);
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.bloc-formulaire .input-form input:focus
+{
+    border: 1px solid var(--info);
+}
+
+.bloc-connexion .input-form .mot-de-passe-oublie
+{
+    font-size: 12px;
+}
+
+.bloc-formulaire .btn-formulaire
+{
+    width: 100%;
+    padding: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: none;
+    border: 2px solid var(--main);
+    color: #000;
+    box-shadow: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.bloc-formulaire .bloc-non-membre
+{
+    text-align: center;
+    margin-top: 32px;
+    font-size: 14px;
+}
+
+.bloc-formulaire .bloc-non-membre a
+{
+    color: var(--link);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.bloc-formulaire .bloc-non-membre a:hover
+{
+    color: var(--link_hover);
+    text-decoration: underline;
+}
+
+.bloc-formulaire .bloc-social
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 640px) 
+{
+    .bloc-formulaire
+    {
+        width: 100%;
+    }
+
+    .bloc-formulaire .input-form.double-input
+    {
+        display: block;
+        padding: 0;
+    }
+    
+    .bloc-formulaire .input-form.double-input input
+    {
+        width: 100%;
+        margin: 32px 0;
+    }
+}
