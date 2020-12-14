@@ -9,7 +9,24 @@ if (file_exists('vues/'.$var_page.'.php'))
         <span class="material-icons">menu</span>
     </div>
     <div class="bloc-lien">
-        <a href="<?= BASEURL; ?>connexion.html">Se connecter</a>
+        <?php 
+        if (isset($_SESSION['utilisateur']))
+        {
+            $utilisateur = req_utilisateur_by_id($_SESSION['utilisateur']);
+        ?>
+            <a href="<?= BASEURL; ?>deconnexion.html"><?= $utilisateur['prenom'].' '.$utilisateur['nom']; ?></a>
+            <div class="avatar">
+                <img src="<?= BASEURL; ?>assets/img/compte_test.jpeg">
+            </div>
+        <?php
+        }
+        else
+        {
+        ?>
+            <a href="<?= BASEURL; ?>connexion.html">Se connecter</a>
+        <?php
+        }
+        ?>
     </div>
 </div>
 

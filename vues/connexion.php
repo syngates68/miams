@@ -20,19 +20,7 @@ $page_title = "Se connecter";
             <?php
                 unset($_SESSION['error_connexion']) ;
                 }
-            ?>    
-            <?php 
-                if (isset($_SESSION['success_connexion']))
-                {
-            ?>
-                <div class="alert alert-succes">
-                    <span class="material-icons">check_circle</span>
-                    <span class="message"><?= $_SESSION['success_connexion']; ?></span>
-                </div>
-            <?php
-                unset($_SESSION['success_connexion']) ;
-                }
-            ?>    
+            ?>  
             <div class="input-form">
                 <input type="email" name="mail" id="mail" placeholder="Adresse mail">
             </div>

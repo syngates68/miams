@@ -15,8 +15,8 @@ if (isset($_POST['submit_connexion']))
                 
                 if (password_verify($_POST['pass'], $utilisateur['pass']))
                 {
-                    $_SESSION['success_connexion'] = "Vous êtes connecté.";
-                    header('Location:'.BASEURL.'connexion.html');
+                    $_SESSION['utilisateur'] = $utilisateur['id'];
+                    header('Location:'.BASEURL);
                     exit;
                 }
                 else

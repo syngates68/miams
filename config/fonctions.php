@@ -66,3 +66,12 @@ function req_utilisateur_by_mail($mail)
 	
 	return $req->fetch(PDO::FETCH_ASSOC);
 }
+
+function req_utilisateur_by_id($id)
+{
+	$sql = "SELECT * FROM utilisateurs WHERE id = :id";
+	$req = db()->prepare($sql);
+	$req->execute(['id' => $id]);
+	
+	return $req->fetch(PDO::FETCH_ASSOC);
+}
