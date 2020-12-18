@@ -5,10 +5,13 @@ if (file_exists('vues/'.$var_page.'.php'))
 
 <div class="navbar">
     <div class="bloc-logo">
-        <img src="<?= BASEURL; ?>assets/img/logo.png" alt="Logo de MIAMS">
+        <a href="<?= BASEURL; ?>">
+            <img src="<?= BASEURL; ?>assets/img/logo.png" alt="Logo de MIAMS">
+        </a>
         <span class="material-icons">menu</span>
     </div>
     <div class="bloc-lien">
+        <a href="<?= BASEURL; ?>ajouter_plat.html">Ajouter un plat</a>
         <?php 
         if (isset($_SESSION['utilisateur']))
         {
