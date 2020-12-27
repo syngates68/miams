@@ -20,6 +20,63 @@ function formate_date($date)
     return date("d/m/Y", strtotime($date)); 
 }
 
+function formate_date_heure($date)
+{
+    return date("d/m/Y à H:i", strtotime($date)); 
+}
+
+function ecart_date($date)
+{
+    setlocale(LC_TIME, 'fra_fra');
+    $now = time();
+    $created = strtotime($date);
+    // La différence est en seconde
+    //echo $now;
+    $diff = $now-$created;
+    $m = ($diff)/(60); // on obtient des minutes
+    $h = ($diff)/(60*60); // ici des heures
+    $j = ($diff)/(60*60*24); // jours
+    $s = ($diff)/(60*60*24*7); // semaines
+    $mo = ($diff)/(60*60*24*7*4); //mois
+    $a = ($diff)/(60*60*24*7*4*12); // années
+    if ($diff < 60) { // "à l'instant"
+        return 'À l\'instant';
+    }
+    elseif ($m < 60) { // "il y a x minutes"
+        $minute = (floor($m) == 1) ? 'minute' : 'minutes';
+        return 'Il y a '.floor($m).' '.$minute;
+    }
+    elseif ($h < 24) { // " il y a x heures"
+        $heure = (floor($h) <= 1) ? 'heure' : 'heures';
+        $dateFormated = 'Il y a '.floor($h).' '.$heure;
+        return $dateFormated;
+    }
+    elseif ($j < 7) { // " il y a x jours"
+        //$jour = (floor($j) <= 1) ? 'jour' : 'jours';
+        if (floor($j) <= 1){
+            $dateFormated = 'Hier';
+        }
+        else{
+            $dateFormated = 'Il y a '.floor($j).' jours';
+        }
+        return $dateFormated;
+    }
+    elseif ($s < 5) { // " il y a x semaines"
+        $semaine = (floor($s) <= 1) ? 'semaine' : 'semaines';
+        $dateFormated = 'Il y a '.floor($s).' '.$semaine;
+        return $dateFormated;
+    }
+    elseif ($mo < 12){
+        $dateFormated = 'Il y a '.floor($mo).' mois';
+        return $dateFormated;
+    }
+    else{
+        $annees = (floor($a) <= 1) ? 'an' : 'ans';
+        $dateFormated = 'Il y a '.floor($a).' '.$annees;
+        return $dateFormated;
+    }
+}
+
 function champs_non_vides($valeurs)
 {
 	$is_empty = 1;
@@ -92,7 +149,7 @@ function req_utilisateur_by_id($id)
 
 function req_liste_plats()
 {
-	$sql = "SELECT CONCAT(u.prenom, ' ', u.nom) as vendeur, p.id as id_plat, p.nom as nom_plat, p.prix, p.description, p.quantite, p.heure_debut, p.heure_fin, p.date_publication, p.slug, p.adresse, p.code_postal, p.ville, p.photo_plat FROM plats p LEFT JOIN utilisateurs u ON u.id = p.id_utilisateur";
+	$sql = "SELECT CONCAT(u.prenom, ' ', u.nom) as vendeur, p.id as id_plat, p.nom as nom_plat, p.prix, p.quantite, p.heure_debut, p.heure_fin, p.date_publication, p.slug, p.adresse, p.code_postal, p.ville, p.photo_plat FROM plats p LEFT JOIN utilisateurs u ON u.id = p.id_utilisateur";
 	$req = db()->prepare($sql);
 	$req->execute();
 	
@@ -101,21 +158,20 @@ function req_liste_plats()
 
 function req_plat_by_id($id_plat)
 {
-	$sql = "SELECT CONCAT(u.prenom, ' ', u.nom) as vendeur, p.id as id_plat, p.nom as nom_plat, p.prix, p.description, p.quantite, p.heure_debut, p.heure_fin, p.date_publication, p.slug, p.adresse, p.code_postal, p.ville, p.photo_plat FROM plats p LEFT JOIN utilisateurs u ON u.id = p.id_utilisateur WHERE p.id = :id_plat";
+	$sql = "SELECT CONCAT(u.prenom, ' ', u.nom) as vendeur, p.id as id_plat, p.nom as nom_plat, p.prix, p.quantite, p.heure_debut, p.heure_fin, p.date_publication, p.slug, p.adresse, p.code_postal, p.ville, p.photo_plat FROM plats p LEFT JOIN utilisateurs u ON u.id = p.id_utilisateur WHERE p.id = :id_plat";
 	$req = db()->prepare($sql);
 	$req->execute(['id_plat' => $id_plat]);
 	
 	return $req->fetch(PDO::FETCH_ASSOC);
 }
 
-function ajouter_plat($nom, $prix, $description, $heure_debut, $heure_fin, $adresse, $code_postal, $ville, $id_utilisateur)
+function ajouter_plat($nom, $prix, $heure_debut, $heure_fin, $adresse, $code_postal, $ville, $id_utilisateur)
 {
-	$sql = "INSERT INTO plats(nom, prix, description, quantite, heure_debut, heure_fin, adresse, code_postal, ville, photo_plat, slug, id_utilisateur, date_publication) VALUES (:nom, :prix, :description, 10, :heure_debut, :heure_fin, :adresse, :code_postal, :ville, 'escalope.jpg', :slug, :id_utilisateur, :date_publication)";
+	$sql = "INSERT INTO plats(nom, prix, quantite, heure_debut, heure_fin, adresse, code_postal, ville, photo_plat, slug, id_utilisateur, date_publication) VALUES (:nom, :prix, 10, :heure_debut, :heure_fin, :adresse, :code_postal, :ville, 'bg-login.jpg', :slug, :id_utilisateur, :date_publication)";
 	$ins = db()->prepare($sql);
 	$ins->execute([
 		'nom' => $nom,
 		'prix' => $prix,
-		'description' => $description,
 		'heure_debut' => $heure_debut,
 		'heure_fin' => $heure_fin,
 		'adresse' => $adresse,

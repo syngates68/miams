@@ -20,18 +20,28 @@ $page_title = "Se connecter";
             <?php
                 unset($_SESSION['error_connexion']) ;
                 }
-            ?>  
-            <div class="input-form">
-                <input type="email" name="mail" id="mail" placeholder="Adresse mail">
-            </div>
-            <div class="input-form">
-                <input type="password" name="pass" id="pass" placeholder="Mot de passe">
-                <p class="mot-de-passe-oublie">Mot de passe oublié</p>
-            </div>
-            <button type="submit" class="btn-formulaire" name="submit_connexion">Connexion</button>
-            <div class="bloc-social">
-                <button class="btn-social btn-facebook"><img src="<?= BASEURL; ?>assets/img/facebook.svg">Facebook</button>
-                <button class="btn-social btn-google"><img src="<?= BASEURL; ?>assets/img/google.svg">Google</button>
+            ?> 
+            <div class="form-container">
+                <div class="row">
+                    <div class="col l12">
+                        <div class="input-form">
+                            <input type="email" name="mail" id="mail" placeholder="Adresse mail">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col l12">
+                        <div class="input-form">
+                            <input type="password" name="pass" id="pass" placeholder="Mot de passe">
+                            <p class="mot-de-passe-oublie">Mot de passe oublié</p>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn-formulaire" name="submit_connexion">Connexion</button>
+                <div class="bloc-social">
+                    <button class="btn-social btn-facebook"><img src="<?= BASEURL; ?>assets/img/facebook.svg">Facebook</button>
+                    <button class="btn-social btn-google"><img src="<?= BASEURL; ?>assets/img/google.svg">Google</button>
+                </div>
             </div>
         </form>
         <div class="bloc-non-membre">

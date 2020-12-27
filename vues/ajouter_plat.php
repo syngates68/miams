@@ -30,23 +30,50 @@
             }
         ?>    
         <form method="POST" action="<?= BASEURL; ?>inc/traitement/ajout_plat.php">
-            <div class="input-form double-input">
-                <input type="text" name="nom" placeholder="Nom de votre plat">
-                <input type="text" name="prix" placeholder="Prix">
-            </div>
-            <div class="input-form">
-                <textarea name="description">Décrivez votre plat</textarea>
-            </div>
-            <div class="input-form double-input">
-                <input type="text" name="heure_debut" placeholder="Heure de début">
-                <input type="text" name="heure_fin" placeholder="Heure de fin">
-            </div>
-            <div class="input-form double-input">
-                <input type="text" name="adresse" placeholder="Adresse">
-                <input type="text" name="code_postal" placeholder="Code Postal">
-            </div>
-            <div class="input-form">
-                <input type="text" name="ville" placeholder="Ville">
+            <div class="form-container">
+                <div class="row">
+                    <div class="col l12">
+                        <div class="input-form">
+                            <input type="text" name="nom" placeholder="Nom de votre plat">
+                        </div>
+                    </div>
+                    <div class="col l12">
+                        <div class="input-form">
+                            <input type="text" name="prix" placeholder="Prix">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col l12">
+                        <div class="input-form">
+                            <input type="text" name="heure_debut" placeholder="Heure de début">
+                        </div>
+                    </div>
+                    <div class="col l12">
+                        <div class="input-form">
+                            <input type="text" name="heure_fin" placeholder="Heure de fin">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col l12">
+                        <div class="input-form">
+                            <input type="text" name="adresse" placeholder="Adresse">
+                        </div>
+                    </div>
+                    <div class="col l12">
+                        <div class="input-form">
+                            <input type="text" name="code_postal" placeholder="Code Postal">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col l12">
+                        <div class="input-form">
+                            <input type="text" name="ville" placeholder="Ville">
+                        </div>
+                    </div>
+                </div>
             </div>
             <button type="submit" class="btn-formulaire" name="submit_plat">Ajouter</button>
         </form>

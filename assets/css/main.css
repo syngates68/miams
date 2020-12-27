@@ -1,3 +1,9 @@
+/*************************************************************
+
+    GENERAL
+
+**************************************************************/
+
 *
 {
     box-sizing: border-box;
@@ -119,6 +125,52 @@ body
     border-radius: 100%;
 }
 
+.form-container .row
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.form-container .row .col.l6,
+.form-container .row .col.m6,
+.form-container .row .col.s6
+{
+    width: 47%;
+}
+
+.form-container .row .col.l12,
+.form-container .row .col.m12,
+.form-container .row .col.s12
+{
+    width: 100%;
+}
+
+.form-container .row .col .input-form
+{
+    padding: 16px 0;
+}
+
+.form-container .row .col .input-form input,
+.form-container .row .col .input-form textarea
+{
+    display: block;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.form-container .row .col .input-form input:focus,
+.form-container .row .col .input-form textarea:focus
+{
+    border: 1px solid var(--info);
+}
+
 footer
 {
     background: #363636;
@@ -165,6 +217,12 @@ footer .footer-copyright .material-icons
 {
     margin-right: 8px;
 }
+
+/*************************************************************
+
+    CONNEXION/INSCRIPTION
+
+**************************************************************/
 
 .container-connexion
 {
@@ -222,7 +280,7 @@ footer .footer-copyright .material-icons
     text-align: center;
 }
 
-.bloc-formulaire .input-form
+/*.bloc-formulaire .input-form
 {
     padding: 16px 0;
 }
@@ -251,7 +309,7 @@ footer .footer-copyright .material-icons
 .bloc-formulaire .input-form textarea:focus
 {
     border: 1px solid var(--info);
-}
+}*/
 
 .bloc-connexion .input-form .mot-de-passe-oublie
 {
@@ -344,6 +402,12 @@ footer .footer-copyright .material-icons
     background: var(--border);
     transition-duration: .3s;
 }
+
+/*************************************************************
+
+    LISTE DES PLATS
+
+**************************************************************/
 
 .container-liste-plats
 {
@@ -449,13 +513,6 @@ footer .footer-copyright .material-icons
     margin-top: 8px;
 }
 
-.container-liste-plats .liste-plats .card .card-description
-{
-    font-size: 12px;
-    color: var(--grey);
-    padding: 8px 0;
-}
-
 .container-liste-plats .liste-plats .card .card-titre
 {
     font-weight: 500;
@@ -525,6 +582,12 @@ footer .footer-copyright .material-icons
     color: #000;
     text-decoration: none;
 }
+
+/*************************************************************
+
+    PAGE PLAT
+
+**************************************************************/
 
 .container-plat
 {
@@ -635,8 +698,7 @@ footer .footer-copyright .material-icons
     object-fit: cover;
 }
 
-.container-plat .bloc-plat .bloc-informations-plat,
-.container-plat .bloc-plat .bloc-description-plat
+.container-plat .bloc-plat .bloc-informations-plat
 {
     padding: 32px 0;
     border-bottom: 1px solid var(--border);
@@ -680,18 +742,6 @@ footer .footer-copyright .material-icons
     margin-top: 16px;
 }
 
-.container-plat .bloc-plat .bloc-description-plat .bloc-titre-categorie
-{
-    font-weight: 600;
-}
-
-.container-plat .bloc-plat .bloc-description-plat .bloc-description
-{
-    line-height: 1.5em;
-    font-size: 14px;
-    padding-top: 32px;
-}
-
 .container-plat .bloc-plat .bloc-adresse-plat
 {
     border-top: 1px solid var(--border);
@@ -730,6 +780,12 @@ footer .footer-copyright .material-icons
     margin: 0 auto;
 }
 
+/*************************************************************
+
+    RESPONSIVE DESIGN
+
+**************************************************************/
+
 @media screen and (max-width: 640px) 
 {
     .container-connexion,
@@ -744,7 +800,7 @@ footer .footer-copyright .material-icons
         padding: 32px 16px;
     }
 
-    .bloc-formulaire .input-form.double-input
+    /*.bloc-formulaire .input-form.double-input
     {
         display: block;
         padding: 0;
@@ -753,7 +809,7 @@ footer .footer-copyright .material-icons
     .bloc-formulaire .input-form.double-input input
     {
         margin: 32px 0;
-    }
+    }*/
 
     .container-liste-plats
     {
@@ -796,7 +852,7 @@ footer .footer-copyright .material-icons
         width: 70%;
     }
 
-    .bloc-formulaire .input-form.double-input
+    /*.bloc-formulaire .input-form.double-input
     {
         display: block;
         padding: 0;
@@ -805,7 +861,7 @@ footer .footer-copyright .material-icons
     .bloc-formulaire .input-form.double-input input
     {
         margin: 32px 0;
-    }
+    }*/
 
     .container-plat .bloc-plat
     {
@@ -820,7 +876,7 @@ footer .footer-copyright .material-icons
         width: 40%;
     }
 
-    .bloc-formulaire .input-form.double-input
+    /*.bloc-formulaire .input-form.double-input
     {
         display: block;
         padding: 0;
@@ -829,7 +885,7 @@ footer .footer-copyright .material-icons
     .bloc-formulaire .input-form.double-input input
     {
         margin: 32px 0;
-    }
+    }*/
 
     .container-liste-plats
     {
@@ -838,6 +894,6 @@ footer .footer-copyright .material-icons
 
     .container-plat .bloc-plat
     {
-        width: 90%;
+        width: 70%;
     }
 }

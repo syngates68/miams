@@ -29,12 +29,8 @@ $plat = req_plat_by_id($id);
         <div class="bloc-informations-plat">
             <div class="bloc-titre-plat"><?= $plat['nom_plat']; ?></div>
             <div class="bloc-prix-plat"><?= $plat['prix']; ?>€/l'assiette</div>
-            <div class="bloc-date-post">Publié le <?= $plat['date_publication']; ?></div>
+            <div class="bloc-date-post">Publié le <?= formate_date_heure($plat['date_publication']); ?></div>
             <button class="button btn-main"><span class="material-icons">list</span>Ajouter à ma liste</button>
-        </div>
-        <div class="bloc-description-plat">
-            <div class="bloc-titre-categorie">Description</div>
-            <div class="bloc-description"><?= $plat['description']; ?></div>
         </div>
         <div class="alert alert-info">
             <span class="material-icons">info</span>
