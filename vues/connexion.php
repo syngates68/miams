@@ -5,7 +5,7 @@ $page_title = "Se connecter";
 <div class="container-connexion">
     <div class="bloc-formulaire bloc-connexion">
         <div class="bloc-logo">
-            <img src="<?= BASEURL; ?>assets/img/logo.png" alt="Logo de MIAMS">
+            <img src="<?= BASEURL; ?>assets/img/logo.svg" alt="Logo de MIAMS">
         </div>
         <h1>Se connecter</h1>
         <form method="POST" action="<?= BASEURL; ?>inc/traitement/connexion.php">

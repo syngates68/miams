@@ -5,9 +5,9 @@ include("../../config/fonctions.php");
 
 if (isset($_POST['submit_plat']))
 {
-    if (champs_non_vides(['nom', 'prix', 'heure_debut', 'heure_fin', 'adresse', 'code_postal', 'ville',]))
+    if (champs_non_vides(['nom', 'type_plat', 'heure_debut', 'heure_fin', 'adresse', 'code_postal', 'ville', 'prix', 'quantite']))
     {
-        ajouter_plat($_POST['nom'], $_POST['prix'], $_POST['heure_debut'], $_POST['heure_fin'], $_POST['adresse'], $_POST['code_postal'], $_POST['ville'],  $_SESSION['utilisateur']);
+        ajouter_plat($_POST['nom'], $_POST['type_plat'], $_POST['prix'], $_POST['quantite'], $_POST['heure_debut'], $_POST['heure_fin'], $_POST['adresse'], $_POST['code_postal'], $_POST['ville'], $_SESSION['utilisateur']);
         $_SESSION['success_ajout'] = "Votre plat a bien été ajouté, merci.";
         header('Location:'.BASEURL.'ajouter_plat.html');
         exit;

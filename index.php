@@ -15,7 +15,7 @@ ob_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" type="image/png" href="<?= BASEURL; ?>assets/img/logo.png" />
+    <link rel="icon" type="image/png" href="<?= BASEURL; ?>assets/img/logo.svg" />
     <title><!-- TITLE --> - Commandez votre repas de ce soir en ligne</title>
     <link rel="stylesheet" href="<?= BASEURL ?>assets/css/main.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -27,6 +27,7 @@ ob_start();
     <!--<script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>-->
     <script src="<?= BASEURL; ?>assets/ckeditor/ckeditor.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Roboto">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script>

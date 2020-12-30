@@ -158,20 +158,22 @@ function req_liste_plats()
 
 function req_plat_by_id($id_plat)
 {
-	$sql = "SELECT CONCAT(u.prenom, ' ', u.nom) as vendeur, p.id as id_plat, p.nom as nom_plat, p.prix, p.quantite, p.heure_debut, p.heure_fin, p.date_publication, p.slug, p.adresse, p.code_postal, p.ville, p.photo_plat FROM plats p LEFT JOIN utilisateurs u ON u.id = p.id_utilisateur WHERE p.id = :id_plat";
+	$sql = "SELECT CONCAT(u.prenom, ' ', u.nom) as vendeur, p.id as id_plat, p.nom as nom_plat, p.prix, p.quantite, p.heure_debut, p.heure_fin, p.date_publication, p.slug, p.adresse, p.code_postal, p.ville, p.informations_supplementaires, p.photo_plat FROM plats p LEFT JOIN utilisateurs u ON u.id = p.id_utilisateur WHERE p.id = :id_plat";
 	$req = db()->prepare($sql);
 	$req->execute(['id_plat' => $id_plat]);
 	
 	return $req->fetch(PDO::FETCH_ASSOC);
 }
 
-function ajouter_plat($nom, $prix, $heure_debut, $heure_fin, $adresse, $code_postal, $ville, $id_utilisateur)
+function ajouter_plat($nom, $type_plat, $prix, $quantite, $heure_debut, $heure_fin, $adresse, $code_postal, $ville, $id_utilisateur)
 {
-	$sql = "INSERT INTO plats(nom, prix, quantite, heure_debut, heure_fin, adresse, code_postal, ville, photo_plat, slug, id_utilisateur, date_publication) VALUES (:nom, :prix, 10, :heure_debut, :heure_fin, :adresse, :code_postal, :ville, 'bg-login.jpg', :slug, :id_utilisateur, :date_publication)";
+	$sql = "INSERT INTO plats(nom, type_plat, prix, quantite, heure_debut, heure_fin, adresse, code_postal, ville, photo_plat, slug, id_utilisateur, date_publication) VALUES (:nom, :type_plat, :prix, :quantite, :heure_debut, :heure_fin, :adresse, :code_postal, :ville, 'bg-login.jpg', :slug, :id_utilisateur, :date_publication)";
 	$ins = db()->prepare($sql);
 	$ins->execute([
 		'nom' => $nom,
+		'type_plat' => $type_plat,
 		'prix' => $prix,
+		'quantite' => $quantite,
 		'heure_debut' => $heure_debut,
 		'heure_fin' => $heure_fin,
 		'adresse' => $adresse,

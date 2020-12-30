@@ -4,32 +4,16 @@ if (file_exists('vues/'.$var_page.'.php'))
 ?>
 
 <div class="navbar">
-    <div class="bloc-logo">
-        <a href="<?= BASEURL; ?>">
-            <img src="<?= BASEURL; ?>assets/img/logo.png" alt="Logo de MIAMS">
-        </a>
+    <div class="bloc-menu">
         <span class="material-icons">menu</span>
     </div>
-    <div class="bloc-lien">
-        <a href="<?= BASEURL; ?>ajouter_plat.html">Ajouter un plat</a>
-        <?php 
-        if (isset($_SESSION['utilisateur']))
-        {
-            $utilisateur = req_utilisateur_by_id($_SESSION['utilisateur']);
-        ?>
-            <a href="<?= BASEURL; ?>deconnexion.html"><?= $utilisateur['prenom'].' '.$utilisateur['nom']; ?></a>
-            <div class="avatar">
-                <img src="<?= BASEURL; ?>assets/img/compte_test.jpeg">
-            </div>
-        <?php
-        }
-        else
-        {
-        ?>
-            <a href="<?= BASEURL; ?>connexion.html">Se connecter</a>
-        <?php
-        }
-        ?>
+    <div class="bloc-logo">
+        <a href="<?= BASEURL; ?>">
+            <img src="<?= BASEURL; ?>assets/img/logo.svg" alt="Logo de MIAMS">
+        </a>
+    </div>
+    <div class="bloc-liens">
+        <a href="<?= BASEURL; ?>connexion.html">Se connecter</a>
     </div>
 </div>
 

@@ -14,15 +14,29 @@ body
     margin: 0;
     font-family: 'Montserrat', sans-serif;
     --main: #FDF24C;
+    --main_hover: #fdb64c;
     --main_complement: #4c57fd;
     --border: #E0E0E0;
     --placeholder: #828282;
     --error: #CD2F2F;
+    --warning: #fdb64c;
     --info:  #2FA7CD;
     --valid: #2FCD8B;
     --link:  #2f4ccd;
     --link_hover:  #1d3396;
     --grey: #444444;
+}
+
+.button
+{
+    padding: 12px 16px;
+    font-weight: 700;
+    border: none;
+    border-radius: 5px;
+    box-shadow: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    cursor: pointer;
 }
 
 .alert
@@ -34,7 +48,7 @@ body
     font-size: 14px;
     font-weight: 600;
     color: #FFF;
-    margin: 8px 0;
+    margin: 16px 0;
 }
 
 .alert .message
@@ -58,6 +72,11 @@ body
     background: var(--info);
 }
 
+.alert-warning
+{
+    background: var(--warning);
+}
+
 .navbar
 {
     padding: 16px 32px;
@@ -65,10 +84,6 @@ body
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
     background: #FFF;
     z-index: 2;
 }
@@ -82,47 +97,12 @@ body
 
 .navbar .bloc-logo img
 {
-    width: 50px;
+    width: 100px;
 }
 
 .navbar .bloc-logo span
 {
     margin-left: 8px;
-}
-
-.navbar .bloc-lien
-{
-    display: flex;
-    align-items: center;
-}
-
-.navbar .bloc-lien a
-{
-    color: #000;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-weight: 600;
-    font-size: 14px;
-    padding: 0 8px;
-}
-
-.navbar .bloc-lien .avatar
-{
-    width: 40px;
-    height: 40px;
-    position: relative;
-}
-
-.navbar .bloc-lien .avatar img
-{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    margin-left: 8px;
-    object-fit: cover;
-    border-radius: 100%;
 }
 
 .form-container .row
@@ -152,11 +132,19 @@ body
     padding: 16px 0;
 }
 
+.form-container .row .col .input-form label
+{
+    display: block;
+    font-weight: 300;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
 .form-container .row .col .input-form input,
 .form-container .row .col .input-form textarea
 {
     display: block;
-    padding: 16px;
+    padding: 12px;
     border: 1px solid var(--border);
     border-radius: 5px;
     width: 100%;
@@ -169,6 +157,12 @@ body
 .form-container .row .col .input-form textarea:focus
 {
     border: 1px solid var(--info);
+    transition-duration: .3s;
+}
+
+.form-container .row .col input[type="radio"]
+{
+    margin: 32px 0;
 }
 
 footer
@@ -263,7 +257,7 @@ footer .footer-copyright .material-icons
 {
     margin: 100px auto;
     padding: 32px 64px;
-    background: #ffffffe8;
+    background: #fff;
     border-radius: 5px;
 }
 
@@ -271,6 +265,7 @@ footer .footer-copyright .material-icons
 .bloc-formulaire h1
 {
     text-align: center;
+    font-weight: 500;
 }
 
 .bloc-inscription .phrase-accroche
@@ -411,39 +406,47 @@ footer .footer-copyright .material-icons
 
 .container-liste-plats
 {
-    padding: 100px 32px;
+    padding: 32px;
     width: 70%;
     margin: 0 auto;
+}
+
+.container-liste-plats .ajouter-plat
+{
+    display: flex;
+    align-items: center;
+    padding: 16px 0;
+    font-weight: 600;
+    color: var(--main_hover);
+    text-decoration: none;
+}
+
+.container-liste-plats .ajouter-plat .material-icons
+{
+    margin-right: 8px;
 }
 
 .container-liste-plats .liste-plats
 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     column-gap: 32px;
 }
 
 .container-liste-plats .liste-plats .card
 {
-    border: 1px solid var(--border);
-    border-radius: 5px;
-    box-shadow: 0 1px 4px hsla(0,0%,73%,.5);
     margin-bottom: 32px;
 }
 
 .container-liste-plats .liste-plats .card .card-img-top
 {
     position: relative;
-    height: 250px;
+    height: 0;
+    padding-bottom: 55.25%;
+    border-radius: 8px;
 }
 
-.container-liste-plats .liste-plats .card .card-img-top .bloc-filtre
-{
-    z-index: 1;
-}
-
-.container-liste-plats .liste-plats .card .card-img-top img,
-.container-liste-plats .liste-plats .card .card-img-top .bloc-filtre
+.container-liste-plats .liste-plats .card .card-img-top img
 {
     object-fit: cover;
     position: absolute;
@@ -451,136 +454,52 @@ footer .footer-copyright .material-icons
     left: 0;
     width: 100%;
     height: 100%;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-}
-
-.container-liste-plats .liste-plats .card .card-img-top .card-titre-plat
-{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    font-size: 16px;
-    padding: 8px;
-    z-index: 1;
-    text-transform: capitalize;
-    background: #FFF;
-    margin-bottom: 8px;
-    margin-left: 8px;
-    margin-right: 8px;
-    border-radius: 5px;
+    border-radius: 8px;
 }
 
 .container-liste-plats .liste-plats .card .card-body
 {
-    padding: 16px;
+    padding: 16px 0;
 }
 
-.container-liste-plats .liste-plats .card .card-top 
+.container-liste-plats .liste-plats .card .card-body div
 {
     padding: 8px 0;
 }
 
-.container-liste-plats .liste-plats .card .card-posteur-plat
-{
-    font-size: 13px;
-    color: var(--grey);
-    margin-bottom: 8px;
-}
-
-.container-liste-plats .liste-plats .card .card-recommandations
-{
-    font-size: 11px;
-    margin-bottom: 8px;
-    color: var(--valid);
-    font-weight: 500;
-}
-
-.container-liste-plats .liste-plats .card .card-prix-plat
+.container-liste-plats .liste-plats .card .card-body .titre a
 {
     font-weight: 600;
-    font-size: 12px;
-}
-
-.container-liste-plats .liste-plats .card .card-adresse-plat
-{
-    display: flex;
-    align-items: center;
-    font-weight: 500;
-    font-size: 12px;
-    margin-top: 8px;
-}
-
-.container-liste-plats .liste-plats .card .card-titre
-{
-    font-weight: 500;
-    padding: 8px 0;
     font-size: 14px;
-    border-top: 1px solid var(--border);
-}
-
-.container-liste-plats .liste-plats .card .card-disponibilite
-{
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-    margin-bottom: 4px;
-}
-
-.container-liste-plats .liste-plats .card .card-disponibilite .material-icons
-{
-    color: var(--grey);
-    margin-right: 8px;
-}
-
-.container-liste-plats .liste-plats .card .card-date-publication
-{
-    padding: 8px 0;
-    text-align: right;
-    font-size: 12px;
-    color: var(--grey);
-}
-
-.container-liste-plats .liste-plats .card .card-footer
-{
-    padding: 16px 0;
-    display: flex;
-    align-items: center;
-    justify-content: end;
-}
-
-.container-liste-plats .liste-plats .card .card-footer .card-button
-{
-    border: none;
-    padding: 8px 16px;
-    display: flex;
-    align-items: center;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 4px;
-    font-size: 12px;
-}
-
-.container-liste-plats .liste-plats .card .card-footer .card-button .material-icons
-{
-    margin-right: 8px;
-    font-size: 22px;
-}
-
-.container-liste-plats .liste-plats .card .card-footer .card-button.btn-main
-{
-    border: 1px solid var(--main_complement);
-    background: none;
-    color: var(--main_complement);
-}
-
-.container-liste-plats .liste-plats .card .card-footer .card-button.btn-secondary
-{
-    background: var(--border);
     color: #000;
     text-decoration: none;
+    transition-duration: .3s;
+}
+
+.container-liste-plats .liste-plats .card .card-body .titre a:hover
+{
+    color: var(--main_hover);
+    transition-duration: .3s;
+}
+
+.container-liste-plats .liste-plats .card .card-body .prix
+{
+    color: var(--main_hover);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.container-liste-plats .liste-plats .card .card-body .adresse,
+.container-liste-plats .liste-plats .card .card-body .heures,
+.container-liste-plats .liste-plats .card .card-body .date-publication
+{
+    font-size: 12px;
+}
+
+.container-liste-plats .liste-plats .card .card-body .date-publication
+{
+    font-style: italic;
+    color: var(--grey);
 }
 
 /*************************************************************
@@ -591,7 +510,7 @@ footer .footer-copyright .material-icons
 
 .container-plat
 {
-    padding: 100px 32px;
+    padding: 32px;
 }
 
 .container-plat .bloc-plat 
@@ -600,184 +519,164 @@ footer .footer-copyright .material-icons
     margin: 0 auto;
 }
 
-.container-plat .bloc-plat .bloc-plat-top
+.container-plat .bloc-plat div::not(.alert)
 {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    column-gap: 16px;
+    padding: 8px 0;
 }
 
-.container-plat .bloc-plat .bloc-plat-top .bloc-image-plat
+.container-plat .bloc-plat .titre
 {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.container-plat .bloc-plat .vendeur
+{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 2em;
+}
+
+.container-plat .bloc-plat .vendeur a
+{
+    color: var(--link);
+    text-decoration: none;
+}
+
+.container-plat .bloc-plat .vendeur a:hover
+{
+    color: var(--link_hover);
+}
+
+.container-plat .bloc-plat button
+{
+    border: 2px solid var(--main_complement);
+    background: none;
+    color: var(--main_complement);
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.container-plat .bloc-plat button .material-icons
+{
+    margin-right: 8px;
+}
+
+.container-plat .bloc-plat .image-plat
+{
+    margin: 16px 0;
+    position: relative;
     width: 100%;
     height: 0;
     padding-top: 55.25%;
-    position: relative;
 }
 
-.container-plat .bloc-plat .bloc-plat-top .bloc-vendeur-plat
-{
-    padding: 16px;
-}
-
-.container-plat .bloc-plat .bloc-plat-top .bloc-vendeur-plat .bloc-titre
-{
-    font-weight: 500;
-    font-size: 13px;
-}
-
-.container-plat .bloc-plat .bloc-plat-top .bloc-vendeur-plat .bloc-informations-vendeur
-{
-    padding: 16px 0;
-    display: flex;
-    align-items: center;
-}
-
-.container-plat .bloc-plat .bloc-plat-top .bloc-vendeur-plat .bloc-informations-vendeur .bloc-image-vendeur
-{
-    width: 50px;
-    height: 0;
-    padding-top: 50px;
-    position: relative;
-}
-
-.container-plat .bloc-plat .bloc-plat-top .bloc-vendeur-plat .bloc-informations-vendeur .bloc-image-vendeur img
+.container-plat .bloc-plat .image-plat img
 {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 100%;
     object-fit: cover;
 }
 
-.container-plat .bloc-plat .bloc-plat-top .bloc-vendeur-plat .bloc-informations-vendeur .bloc-infos
+.container-plat .bloc-plat .informations div
 {
-    padding: 0 8px;
-    font-size: 12px;
+    padding: 0;
 }
 
-.container-plat .bloc-plat .bloc-plat-top .bloc-vendeur-plat .bloc-informations-vendeur .bloc-infos .nom-vendeur
+.container-plat .bloc-plat .informations,
+.container-plat .bloc-plat .informations-supplementaires
 {
-    font-weight: 600;
+    line-height: 2.5em;
+    font-size: 14px;
+    color: var(--grey);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 0;
 }
 
-.container-plat .bloc-plat .bloc-plat-top .bloc-vendeur-plat .bloc-informations-vendeur .bloc-infos .avis-vendeur
+.container-plat .bloc-plat .informations p,
+.container-plat .bloc-plat .informations-supplementaires p
 {
-    margin-top: 4px;
-    color: var(--valid);
-}
-
-.container-plat .bloc-plat .bloc-plat-top .bloc-vendeur-plat .bloc-actions
-{
-    padding: 16px 0;
-}
-
-.container-plat .bloc-plat .bloc-plat-top .bloc-vendeur-plat .bloc-actions button
-{
-    width: 100%;
-    padding: 12px 0;
-    border: none;
-    background: var(--main);
     color: #000;
-    font-weight: 600;
-    font-family: 'Montserrat', sans-serif;
-    border-radius: 5px;
-    cursor: pointer;
+    font-weight: 500;
 }
 
-.container-plat .bloc-plat .bloc-plat-top .bloc-image-plat img
+.container-plat .bloc-plat .informations .prix
 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
-    object-fit: cover;
+    font-weight: 600;
+    color: var(--main_hover);
 }
 
-.container-plat .bloc-plat .bloc-informations-plat
+/*************************************************************
+
+    AJOUTER UN PLAT
+
+**************************************************************/
+
+.container-ajout-plat
+{
+    padding: 32px;
+}
+
+.container-ajout-plat .bloc-formulaire
+{
+    width: 40%;
+    margin: 0;
+}
+
+.container-ajout-plat .bloc-formulaire .separation
+{
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+}
+
+.container-ajout-plat .bloc-formulaire h1
+{
+    text-align: left;
+}
+
+.container-ajout-plat .bloc-formulaire .bloc-etape
 {
     padding: 32px 0;
     border-bottom: 1px solid var(--border);
 }
 
-.container-plat .bloc-plat .bloc-informations-plat .btn-main
+.container-ajout-plat .bloc-formulaire .etape
+{
+    font-weight: 600;
+    color: var(--main_complement);
+}
+
+.container-ajout-plat .bloc-formulaire .explication
+{
+    padding: 16px 0;
+    line-height: 1.7em;
+    font-size: 14px;
+    color: var(--grey);
+    font-style: italic;
+}
+
+.container-ajout-plat .bloc-formulaire .bloc-buttons
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-ajout-plat .bloc-formulaire .bloc-buttons button
+{
+    width: 40%;
+}
+
+.container-ajout-plat .bloc-formulaire .bloc-buttons button.btn-retour
 {
     border: 1px solid var(--main_complement);
-    background: none;
+    background: #FFF;
     color: var(--main_complement);
-    padding: 8px 16px;
-    display: flex;
-    align-items: center;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 16px;
-    font-size: 12px;
-}
-
-.container-plat .bloc-plat .bloc-informations-plat .btn-main .material-icons
-{
-    margin-right: 8px;
-}
-
-.container-plat .bloc-plat .bloc-informations-plat .bloc-titre-plat
-{
-    font-weight: 500;
-    font-size: 20px;
-}
-
-.container-plat .bloc-plat .bloc-informations-plat .bloc-prix-plat
-{
-    margin-top: 16px;
-    font-weight: 600;
-    color: var(--main_complement);
-}
-
-.container-plat .bloc-plat .bloc-informations-plat .bloc-date-post
-{
-    font-size: 12px;
-    margin-top: 16px;
-}
-
-.container-plat .bloc-plat .bloc-adresse-plat
-{
-    border-top: 1px solid var(--border);
-    padding: 32px 0;
-    font-weight: 600;
-    line-height: 1.5em;
-    font-size: 12px;
-}
-
-.container-plat .bloc-plat .bloc-map
-{
-    width: 100%;
-    height: 350px;
-    position: relative;
-    margin-top: 16px;
-}
-
-.container-plat .bloc-plat .bloc-map img
-{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.container-ajout-plat
-{
-    padding: 100px 32px;
-}
-
-.container-ajout-plat .bloc-formulaire
-{
-    width: 50%;
-    margin: 0 auto;
 }
 
 /*************************************************************
@@ -788,6 +687,13 @@ footer .footer-copyright .material-icons
 
 @media screen and (max-width: 640px) 
 {
+    .form-container .row .col.l6,
+    .form-container .row .col.m6,
+    .form-container .row .col.s6
+    {
+        width: 100%;
+    }
+
     .container-connexion,
     .container-inscription
     {
@@ -822,16 +728,9 @@ footer .footer-copyright .material-icons
         grid-template-columns: 1fr;
     }
 
-    .container-liste-plats .liste-plats .card .card-footer
+    .container-plat
     {
-        display: block;
-    }
-
-    .container-liste-plats .liste-plats .card .card-footer .card-button
-    {
-        margin-bottom: 4px;
-        width: 100%;
-        justify-content: center;
+        padding: 100px 8px;
     }
 
     .container-plat .bloc-plat
@@ -839,9 +738,16 @@ footer .footer-copyright .material-icons
         width: 100%;
     }
 
-    .container-plat .bloc-plat .bloc-plat-top
+    .container-plat .bloc-plat .vendeur
     {
-        display: block;
+        margin-top: 8px;
+        font-size: 12px;
+        color: var(--grey);
+    }
+
+    .container-ajout-plat .bloc-formulaire
+    {
+        width: 100%;
     }
 }
 

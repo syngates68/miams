@@ -5,7 +5,7 @@ $page_title = "S'inscrire";
 <div class="container-inscription">
     <div class="bloc-formulaire bloc-inscription">
         <div class="bloc-logo">
-            <img src="<?= BASEURL; ?>assets/img/logo.png" alt="Logo de MIAMS">
+            <img src="<?= BASEURL; ?>assets/img/logo.svg" alt="Logo de MIAMS">
         </div>
         <h1>S'inscrire</h1>
         <p class="phrase-accroche">Créez-vous un compte sur miams.fr afin de rejoindre la communauté 
@@ -37,36 +37,36 @@ $page_title = "S'inscrire";
             ?>  
             <div class="form-container">
                 <div class="row">
-                    <div class="col l12">
+                    <div class="col l6">
                         <div class="input-form">
                             <input type="text" name="nom" id="nom" <?php if (isset($_SESSION['_nom'])) : ?>value="<?= $_SESSION['_nom']; ?>"<?php unset($_SESSION['_nom']); endif; ?> placeholder="Nom">
                         </div>
                     </div>
-                    <div class="col l12">
+                    <div class="col l6">
                         <div class="input-form">
                             <input type="text" name="prenom" id="prenom" <?php if (isset($_SESSION['_prenom'])) : ?>value="<?= $_SESSION['_prenom']; ?>"<?php unset($_SESSION['_prenom']); endif; ?> placeholder="Prénom">
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col l12">
+                    <div class="col l6">
                         <div class="input-form">
                             <input type="email" name="mail" id="mail" <?php if (isset($_SESSION['_mail'])) : ?>value="<?= $_SESSION['_mail']; ?>"<?php unset($_SESSION['_mail']); endif; ?> placeholder="Adresse mail">
                         </div>
                     </div>
-                    <div class="col l12">
+                    <div class="col l6">
                         <div class="input-form">
                             <input type="email" name="mail_confirm" id="mail_confirm" placeholder="Confirmation de l'adresse mail">
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col l12">
+                    <div class="col l6">
                         <div class="input-form">
                             <input type="password" name="pass" id="pass" placeholder="Mot de passe">
                         </div>
                     </div>
-                    <div class="col l12">
+                    <div class="col l6">
                         <div class="input-form">
                             <input type="password" name="pass_confirm" id="pass_confirm" placeholder="Confirmation du mot de passe">
                         </div>

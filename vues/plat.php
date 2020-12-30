@@ -6,48 +6,43 @@ $plat = req_plat_by_id($id);
 
 <div class="container-plat">
     <div class="bloc-plat">
-        <div class="bloc-plat-top">
-            <div class="bloc-image-plat">
-                <img src="<?= BASEURL; ?>assets/img/<?= $plat['photo_plat']; ?>" alt="Photo du plat">
-            </div>
-            <div class="bloc-vendeur-plat">
-                <div class="bloc-titre">Vendeur :</div>
-                <div class="bloc-informations-vendeur">
-                    <div class="bloc-image-vendeur">
-                        <img src="<?= BASEURL; ?>assets/img/compte_test.jpeg" alt="Photo du vendeur">
-                    </div>
-                    <div class="bloc-infos">
-                        <div class="nom-vendeur"><?= $plat['vendeur']; ?></div>
-                        <div class="avis-vendeur">Recommandé à 97% (7 avis)</div>
-                    </div>
-                </div>
-                <div class="bloc-actions">
-                    <button class="btn">Contacter le vendeur</button>
-                </div>
-            </div>
+        <div class="titre"><?= $plat['nom_plat']; ?></div>
+        <div class="vendeur">Proposé par <?= $plat['vendeur']; ?> (<a href="#">contacter</a>) le <?= formate_date_heure($plat['date_publication']); ?></div>
+        <button class="button"><span class="material-icons">shopping_cart</span>Commander</button>
+        <div class="image-plat">
+            <img src="<?= BASEURL; ?>assets/img/<?= $plat['photo_plat']; ?>" alt="Photo du plat">
         </div>
-        <div class="bloc-informations-plat">
-            <div class="bloc-titre-plat"><?= $plat['nom_plat']; ?></div>
-            <div class="bloc-prix-plat"><?= $plat['prix']; ?>€/l'assiette</div>
-            <div class="bloc-date-post">Publié le <?= formate_date_heure($plat['date_publication']); ?></div>
-            <button class="button btn-main"><span class="material-icons">list</span>Ajouter à ma liste</button>
+        <div class="informations">
+            <p>Informations :</p>
+            <div class="prix"><?= $plat['prix']; ?>€/unité</div>
+            <div class="quantite">Reste <?= $plat['quantite']; ?></div>
+            <div class="heures">Disponible de <?= $plat['heure_debut']; ?> à <?= $plat['heure_fin']; ?></div>
+            <div class="adresse"><?= $plat['adresse'].' '.$plat['ville'].' '.$plat['code_postal']; ?></div>
         </div>
-        <div class="alert alert-info">
-            <span class="material-icons">info</span>
+        <div class="informations-supplementaires">
+            <p>Informations supplémentaires :</p>
+            <?php
+                if ($plat['informations_supplementaires'] != NULL)
+                {
+            ?>
+                    <?= $plat['informations_supplementaires']; ?>
+            <?php
+                }
+                else
+                {
+            ?>
+                    <span>Aucune information supplémentaire</span>
+            <?php
+                }
+            ?>
+        </div>
+        <div class="alert alert-warning">
+            <span class="material-icons">warning</span>
             <span class="message">
-                Si vous êtes allergiques à certains aliments, veillez à contacter le posteur de
-                l'annonce afin d'obtenir plus d'informations sur les potentiels allergènes pouvant être contenus
-                dans le plat.
+                Si vous êtes victimes d'allergies ou d'intolérence à un aliment, 
+                n'hésitez pas à contacter le vendeur afin de savoir si le plat 
+                ne représente aucun danger pour votre santé.
             </span>
-        </div>
-        <div class="bloc-adresse-plat">
-            <div class="adresse">
-                <?= $plat['adresse']; ?><br/>
-                <?= $plat['code_postal'].' '.$plat['ville']; ?>
-            </div>
-            <div class="bloc-map">
-                <img src="<?= BASEURL; ?>assets/img/map.png">
-            </div>
         </div>
     </div>
 </div>
