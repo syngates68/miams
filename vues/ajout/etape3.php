@@ -4,13 +4,63 @@
         <div class="col l6">
             <div class="input-form">
                 <label for="heure_debut">Heure de début</label>
-                <input type="text" name="heure_debut" id="heure_debut" <?php if (isset($_SESSION['heure_debut'])) : ?>value="<?= $_SESSION['heure_debut']; ?>"<?php endif; ?>>
+                <select name="heure_debut" id="heure_debut">
+                    <?php
+                    $heure = 0;
+                    $minutes = 0;
+                    $selected = '';
+
+                    for ($i = 0; $i <= 23; $i++)
+                    {
+                        for ($j = 0; $j <= 1; $j++)
+                        {
+                            $heure = $i;
+                            if ($i < 10)
+                                $heure = '0'.$i;
+                            
+                            $minutes = '00';
+                            if ($j == 1)
+                                $minutes = '30';
+
+                            if (isset($_SESSION['heure_debut']) && $_SESSION['heure_debut'] == $heure.':'.$minutes)
+                                $selected = 'selected';
+                            
+                            echo '<option value="'.$heure.':'.$minutes.'" '.$selected.'>'.$heure.':'.$minutes.'</option>';
+                        }
+                    }
+                    ?>
+                </select>
             </div>
         </div>
         <div class="col l6">
             <div class="input-form">
                 <label for="heure_fin">Heure de fin</label>
-                <input type="text" name="heure_fin" id="heure_fin" <?php if (isset($_SESSION['heure_fin'])) : ?>value="<?= $_SESSION['heure_fin']; ?>"<?php endif; ?>>
+                <select name="heure_fin" id="heure_fin">
+                    <?php
+                    $heure = 0;
+                    $minutes = 0;
+                    $selected = '';
+
+                    for ($i = 0; $i <= 23; $i++)
+                    {
+                        for ($j = 0; $j <= 1; $j++)
+                        {
+                            $heure = $i;
+                            if ($i < 10)
+                                $heure = '0'.$i;
+                            
+                            $minutes = '00';
+                            if ($j == 1)
+                                $minutes = '30';
+
+                            if (isset($_SESSION['heure_fin']) && $_SESSION['heure_fin'] == $heure.':'.$minutes)
+                                $selected = 'selected';
+                            
+                            echo '<option value="'.$heure.':'.$minutes.'" '.$selected.'>'.$heure.':'.$minutes.'</option>';
+                        }
+                    }
+                    ?>
+                </select>
             </div>
         </div>
     </div>

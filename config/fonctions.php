@@ -165,9 +165,9 @@ function req_plat_by_id($id_plat)
 	return $req->fetch(PDO::FETCH_ASSOC);
 }
 
-function ajouter_plat($nom, $type_plat, $prix, $quantite, $heure_debut, $heure_fin, $adresse, $code_postal, $ville, $id_utilisateur)
+function ajouter_plat($nom, $type_plat, $prix, $quantite, $heure_debut, $heure_fin, $adresse, $code_postal, $ville, $informations_supplementaires, $id_utilisateur)
 {
-	$sql = "INSERT INTO plats(nom, type_plat, prix, quantite, heure_debut, heure_fin, adresse, code_postal, ville, photo_plat, slug, id_utilisateur, date_publication) VALUES (:nom, :type_plat, :prix, :quantite, :heure_debut, :heure_fin, :adresse, :code_postal, :ville, 'bg-login.jpg', :slug, :id_utilisateur, :date_publication)";
+	$sql = "INSERT INTO plats(nom, type_plat, prix, quantite, heure_debut, heure_fin, adresse, code_postal, ville, informations_supplementaires, photo_plat, slug, id_utilisateur, date_publication) VALUES (:nom, :type_plat, :prix, :quantite, :heure_debut, :heure_fin, :adresse, :code_postal, :ville, :informations_supplementaires, 'bg-login.jpg', :slug, :id_utilisateur, :date_publication)";
 	$ins = db()->prepare($sql);
 	$ins->execute([
 		'nom' => $nom,
@@ -179,8 +179,22 @@ function ajouter_plat($nom, $type_plat, $prix, $quantite, $heure_debut, $heure_f
 		'adresse' => $adresse,
 		'code_postal' => $code_postal,
 		'ville' => $ville,
+		'informations_supplementaires' => $informations_supplementaires,
 		'slug' => slugify($nom),
 		'id_utilisateur' => $id_utilisateur,
 		'date_publication' => date('Y-m-d H:i:s')
+	]);
+}
+
+function ajouter_commande($id_utilisateur, $quantite, $heure_souhaitee, $id_plat)
+{
+	$sql = "INSERT INTO commandes(id_utilisateur, quantite, heure_souhaitee, id_plat, date_commande) VALUES (:id_utilisateur, :quantite, :heure_souhaitee, :id_plat, :date_commande)";
+	$ins = db()->prepare($sql);
+	$ins->execute([
+		'id_utilisateur' => $id_utilisateur,
+		'quantite' => $quantite,
+		'heure_souhaitee' => $heure_souhaitee,
+		'id_plat' => $id_plat,
+		'date_commande' => date('Y-m-d H:i:s')
 	]);
 }

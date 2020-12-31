@@ -13,7 +13,34 @@ if (file_exists('vues/'.$var_page.'.php'))
         </a>
     </div>
     <div class="bloc-liens">
-        <a href="<?= BASEURL; ?>connexion.html">Se connecter</a>
+        <?php 
+        if (isset($_SESSION['utilisateur'])) :
+            $user = req_utilisateur_by_id($_SESSION['utilisateur']);
+        ?>
+            <div class="bloc-utilisateur">
+                <span class="utilisateur"><?= $user['prenom']; ?></span>
+                <div class="bloc-avatar dropdown-utilisateur">
+                    <img src="<?= BASEURL; ?>assets/img/compte_test.jpeg" alt="Photo de profil de <?= $user['prenom'].' '.$user['nom']; ?>">
+                </div>
+            </div>
+            <div class="bloc-dropdown-utilisateur">
+                <div class="lien-dropdown">
+                    <a href="#">Mon compte</a>
+                </div>
+                <div class="lien-dropdown">
+                    <a href="#">Mes préférences</a>
+                </div>
+                <div class="lien-dropdown">
+                    <a href="<?= BASEURL; ?>deconnexion.html">Déconnexion</a>
+                </div>
+            </div>
+        <?php 
+        else : 
+        ?>
+            <a href="<?= BASEURL; ?>connexion.html">Se connecter</a>
+        <?php
+        endif;
+        ?>
     </div>
 </div>
 

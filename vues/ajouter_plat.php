@@ -38,6 +38,7 @@
                             include('ajout/etape2.php');
                             include('ajout/etape3.php');
                             include('ajout/etape4.php');
+                            include('ajout/etape5.php');
                         ?>
                     </div>
                     <button class="btn-formulaire" name="submit_plat">Ajouter</button>

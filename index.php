@@ -29,7 +29,9 @@ ob_start();
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Roboto">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+    <!-- Système de modals -->
+    <script src="<?= BASEURL; ?>assets/js/modaal.js"></script>
+    <link rel="stylesheet" href="<?= BASEURL; ?>assets/css/modaal.css">
     <script>
         var baseurl = "<?= BASEURL; ?>"
     </script>
