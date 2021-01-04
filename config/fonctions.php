@@ -198,3 +198,13 @@ function ajouter_commande($id_utilisateur, $quantite, $heure_souhaitee, $id_plat
 		'date_commande' => date('Y-m-d H:i:s')
 	]);
 }
+
+function update_quantite_plat($id_plat, $quantite)
+{
+	$sql = "UPDATE plats SET quantite = quantite - :quantite WHERE id = :id";
+	$upd = db()->prepare($sql);
+	$upd->execute([
+		'quantite' => $quantite,
+		'id' => $id_plat
+	]);
+}

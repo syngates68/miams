@@ -1,7 +1,7 @@
 <?php
-$page_title = "Le nom du plat";
 $id = explode('-', $_GET['param'])[sizeof(explode('-', $_GET['param'])) - 1];
 $plat = req_plat_by_id($id);
+$page_title = $plat['nom_plat'];
 
 $debut = str_replace(':', '', $plat['heure_debut']);
 $fin = str_replace(':', '', $plat['heure_fin']);
@@ -118,8 +118,44 @@ while ($tmp <= $fin)
                 }
             ?>
         </div>
-        <div class="alert alert-warning">
-            <span class="material-icons">warning</span>
+        <div class="informations-supplementaires">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Allergènes</th>
+                        <th>Contient</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><B>Céréales contenant du gluten</B></td>
+                        <td>X</td>
+                    </tr>
+                    <tr>
+                        <td>Crustacés</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Oeufs</td>
+                        <td>X</td>
+                    </tr>
+                    <tr>
+                        <td>Poissons</td>
+                        <td>X</td>
+                    </tr>
+                    <tr>
+                        <td>Arachides</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Soja</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="alert alert-info">
+            <span class="material-icons">info</span>
             <span class="message">
                 Si vous êtes victimes d'allergies ou d'intolérence à un aliment, 
                 n'hésitez pas à contacter le vendeur afin de savoir si le plat 
@@ -130,6 +166,7 @@ while ($tmp <= $fin)
 </div>
 <script>
     $('.commander').modaal({
-        content_source: '#commander'
+        content_source: '#commander',
+        animation_speed : 100
     });
 </script>

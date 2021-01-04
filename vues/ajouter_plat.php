@@ -34,11 +34,11 @@
                 <form method="POST" action="<?= BASEURL; ?>inc/traitement/ajout_plat.php">
                     <div class="form-container">
                         <?php 
-                            include('ajout/etape1.php');
-                            include('ajout/etape2.php');
-                            include('ajout/etape3.php');
-                            include('ajout/etape4.php');
-                            include('ajout/etape5.php');
+                            include('./inc/etape1.php');
+                            include('./inc/etape2.php');
+                            include('./inc/etape3.php');
+                            include('./inc/etape4.php');
+                            include('./inc/etape5.php');
                         ?>
                     </div>
                     <button class="btn-formulaire" name="submit_plat">Ajouter</button>

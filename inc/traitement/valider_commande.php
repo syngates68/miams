@@ -11,6 +11,7 @@ if (champs_non_vides(['quantite', 'heure']))
         {
             $_SESSION['commande_valide'] = true;
             ajouter_commande($_SESSION['utilisateur'], $_POST['quantite'], $_POST['heure'], $_POST['id_plat']);
+            update_quantite_plat($_POST['id_plat'], $_POST['quantite']);
         }
         else
         {

@@ -17,11 +17,19 @@ if (file_exists('vues/'.$var_page.'.php'))
         if (isset($_SESSION['utilisateur'])) :
             $user = req_utilisateur_by_id($_SESSION['utilisateur']);
         ?>
+            <div class="bloc-notifications">
+                <span class="material-icons">notifications</span>
+                <div class="notification">1</div>
+            </div>
+            <div class="bloc-messages">
+                <span class="material-icons">chat_bubble</span>
+                <div class="notification">1</div>
+            </div>
             <div class="bloc-utilisateur">
-                <span class="utilisateur"><?= $user['prenom']; ?></span>
                 <div class="bloc-avatar dropdown-utilisateur">
-                    <img src="<?= BASEURL; ?>assets/img/compte_test.jpeg" alt="Photo de profil de <?= $user['prenom'].' '.$user['nom']; ?>">
+                    <img src="<?= BASEURL; ?>assets/img/grogu.jpg" alt="Photo de profil de <?= $user['prenom'].' '.$user['nom']; ?>">
                 </div>
+                <span class="utilisateur"><?= $user['prenom']; ?></span>
             </div>
             <div class="bloc-dropdown-utilisateur">
                 <div class="lien-dropdown">
@@ -37,7 +45,7 @@ if (file_exists('vues/'.$var_page.'.php'))
         <?php 
         else : 
         ?>
-            <a href="<?= BASEURL; ?>connexion.html">Se connecter</a>
+            <a class="btn-connexion" href="<?= BASEURL; ?>connexion.html">Se connecter</a>
         <?php
         endif;
         ?>
@@ -46,19 +54,23 @@ if (file_exists('vues/'.$var_page.'.php'))
 
 <?php
     include($var_page.'.php');
+    
+    $bg_footer = 'bg-img';
+    if ($var_page == 'connexion' || $var_page == 'inscription')
+        $bg_footer = 'bg-color';
 ?>
-
-<footer>
-    <div class="footer-social">
-        <span class="material-icons">facebook</span>
-        <span class="material-icons">facebook</span>
-        <span class="material-icons">facebook</span>
+<footer class="<?= $bg_footer; ?>">
+    <div class="bloc-footer">
+        <a href="">Mentions légales</a>
+        <a href="">Conditions Générales d'Utilisation</a>
+        <a href="">Conditions Générales de Vente</a>
     </div>
-    <div class="footer-liens">
-        <a href="#">Contact</a> - <a href="#">CGU</a> - <a href="#">CGV</a>
+    <div class="bloc-footer">
+        <a href="">Contact</a>
+        <a href="">Qui sommes-nous ?</a>
     </div>
-    <div class="footer-copyright">
-        <span class="material-icons">copyright</span> <?= date('Y'); ?> Miams
+    <div class="bloc-footer">
+        <span class="copyright">Copyright MIAMS <?= date('Y'); ?></span>
     </div>
 </footer>
 
