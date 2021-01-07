@@ -4,9 +4,9 @@ if (file_exists('vues/'.$var_page.'.php'))
 ?>
 
 <div class="navbar">
-    <div class="bloc-menu">
+    <!--<div class="bloc-menu">
         <span class="material-icons">menu</span>
-    </div>
+    </div>-->
     <div class="bloc-logo">
         <a href="<?= BASEURL; ?>">
             <img src="<?= BASEURL; ?>assets/img/logo.svg" alt="Logo de MIAMS">
@@ -27,18 +27,25 @@ if (file_exists('vues/'.$var_page.'.php'))
             </div>
             <div class="bloc-utilisateur">
                 <div class="bloc-avatar dropdown-utilisateur">
-                    <img src="<?= BASEURL; ?>assets/img/grogu.jpg" alt="Photo de profil de <?= $user['prenom'].' '.$user['nom']; ?>">
+                    <img src="<?= BASEURL; ?>assets/<?= $user['avatar']; ?>" alt="Photo de profil de <?= $user['prenom'].' '.$user['nom']; ?>">
                 </div>
                 <span class="utilisateur"><?= $user['prenom']; ?></span>
             </div>
             <div class="bloc-dropdown-utilisateur">
                 <div class="lien-dropdown">
-                    <a href="#">Mon compte</a>
+                    <span class="material-icons">local_shipping</span>
+                    <a href="<?= BASEURL; ?>mes_commandes.html">Mes commandes</a>
                 </div>
                 <div class="lien-dropdown">
+                    <span class="material-icons">restaurant</span>
+                    <a href="#">Mes plats</a>
+                </div>
+                <div class="lien-dropdown">
+                    <span class="material-icons">settings</span>
                     <a href="#">Mes préférences</a>
                 </div>
                 <div class="lien-dropdown">
+                    <span class="material-icons">meeting_room</span>
                     <a href="<?= BASEURL; ?>deconnexion.html">Déconnexion</a>
                 </div>
             </div>

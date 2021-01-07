@@ -107,15 +107,17 @@ function extrait_texte(string $texte, int $longueur)
 	return $texte.'...';
 }
 
-function inscription_utilisateur($nom, $prenom, $mail, $pass)
+function inscription_utilisateur($nom, $prenom, $mail, $pass, $code, $avatar)
 {
-	$sql = "INSERT INTO utilisateurs(nom, prenom, mail, pass, date_inscription) VALUES (:nom, :prenom, :mail, :pass, :date_inscription)";
+	$sql = "INSERT INTO utilisateurs(nom, prenom, mail, pass, avatar, code_confirmation, date_inscription) VALUES (:nom, :prenom, :mail, :pass, :avatar, :code_confirmation, :date_inscription)";
 	$ins = db()->prepare($sql);
 	$ins->execute([
 		'nom' => $nom,
 		'prenom' => $prenom,
 		'mail' => $mail,
 		'pass' => $pass,
+		'avatar' => $avatar,
+		'code_confirmation' => $code,
 		'date_inscription' => date('Y-m-d H:i:s')
 	]);
 }
@@ -186,14 +188,15 @@ function ajouter_plat($nom, $type_plat, $prix, $quantite, $heure_debut, $heure_f
 	]);
 }
 
-function ajouter_commande($id_utilisateur, $quantite, $heure_souhaitee, $id_plat)
+function ajouter_commande($id_utilisateur, $quantite, $heure_souhaitee, $montant, $id_plat)
 {
-	$sql = "INSERT INTO commandes(id_utilisateur, quantite, heure_souhaitee, id_plat, date_commande) VALUES (:id_utilisateur, :quantite, :heure_souhaitee, :id_plat, :date_commande)";
+	$sql = "INSERT INTO commandes(id_utilisateur, quantite, heure_souhaitee, montant, id_plat, date_commande) VALUES (:id_utilisateur, :quantite, :heure_souhaitee, :montant, :id_plat, :date_commande)";
 	$ins = db()->prepare($sql);
 	$ins->execute([
 		'id_utilisateur' => $id_utilisateur,
 		'quantite' => $quantite,
 		'heure_souhaitee' => $heure_souhaitee,
+		'montant' => $montant,
 		'id_plat' => $id_plat,
 		'date_commande' => date('Y-m-d H:i:s')
 	]);
@@ -207,4 +210,30 @@ function update_quantite_plat($id_plat, $quantite)
 		'quantite' => $quantite,
 		'id' => $id_plat
 	]);
+}
+
+function req_derniere_commande_utilisateur($id_utilisateur)
+{
+	$sql = "SELECT id FROM commandes WHERE id_utilisateur = :id_utilisateur ORDER BY id DESC LIMIT 1";
+	$req = db()->prepare($sql);
+	$req->execute(['id_utilisateur' => $id_utilisateur]);
+	return $req->fetchAll(PDO::FETCH_ASSOC)[0]['id'];
+}
+
+function update_reference_commande($id_commande, $reference)
+{
+	$sql = "UPDATE commandes SET reference = :reference WHERE id = :id";
+	$upd = db()->prepare($sql);
+	$upd->execute([
+		'reference' => $reference,
+		'id' => $id_commande
+	]);
+}
+
+function req_commandes_by_utilisateur($id_utilisateur)
+{
+	$sql = "SELECT c.quantite, c.heure_souhaitee, c.montant, c.reference, c.date_commande, p.nom as nom_plat, p.adresse, p.code_postal, p.ville, p.photo_plat FROM commandes c LEFT JOIN plats p ON p.id = c.id_plat WHERE c.id_utilisateur = :id_utilisateur";
+	$req = db()->prepare($sql);
+	$req->execute(['id_utilisateur' => $id_utilisateur]);
+	return $req->fetchAll(PDO::FETCH_ASSOC);
 }

@@ -20,7 +20,7 @@ body
     --main_complement: #4c57fd;
     --border: #E0E0E0;
     --placeholder: #828282;
-    --error: #CD2F2F;
+    --error: #ec4444;
     --warning: #f8981a;
     --info:  #2FA7CD;
     --valid: #2FCD8B;
@@ -82,12 +82,11 @@ body
 .navbar
 {
     padding: 16px 32px;
-    border-bottom: 2px solid var(--main);
+    /*border-bottom: 2px solid var(--main);*/
     display: flex;
     align-items: center;
     justify-content: space-between;
     background: #FFF;
-    z-index: 2;
 }
 
 .navbar .bloc-logo
@@ -206,7 +205,6 @@ body
     position: absolute;
     top: 70px;
     right: 15px;
-    padding: 16px;
     background: #FFF;
     border-radius: 5px;
     border: 1px solid var(--border);
@@ -220,18 +218,35 @@ body
 
 .navbar .bloc-dropdown-utilisateur .lien-dropdown
 {
-    padding: 8px 0;
+    padding: 16px 24px;
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.navbar .bloc-dropdown-utilisateur .lien-dropdown .material-icons
+{
+    margin-right: 16px;
+    color: var(--grey);
+    font-size: 20px;
+}
+
+.navbar .bloc-dropdown-utilisateur .lien-dropdown a
+{
+    color: var(--grey);
 }
 
 .navbar .bloc-dropdown-utilisateur .lien-dropdown a:hover
 {
-    color: var(--main_darker);
+    color: #000;
 }
 
 .form-container .row
 {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
     flex-wrap: wrap;
 }
@@ -258,7 +273,7 @@ body
 .form-container .row .col .input-form label
 {
     display: block;
-    font-weight: 300;
+    font-weight: 600;
     font-size: 12px;
     margin-bottom: 8px;
 }
@@ -266,6 +281,7 @@ body
 .form-container .row .col .input-form textarea
 {
     min-height: 250px;
+    resize: none;
     font-size: 12px;
 }
 
@@ -280,19 +296,82 @@ body
     width: 100%;
     max-width: 100%;
     min-width: 100%;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
 }
 
 .form-container .row .col .input-form input:focus,
 .form-container .row .col .input-form textarea:focus
 {
-    border: 1px solid var(--info);
+    border: 1px solid #2fa8cd8e;
+    box-shadow: 0 0 1px 1px #2fa8cd8e;
     transition-duration: .3s;
 }
 
-.form-container .row .col input[type="radio"]
+.form-container .radio
 {
-    margin: 32px 0;
+    position: relative;
+}
+
+.form-container .row .col input[type="radio"]:not(:checked),
+.form-container .row .col input[type="radio"]:checked
+{
+    position: absolute;
+    left: 0;
+    opacity: 0;
+}
+
+.form-container .row .col input[type="radio"]:not(:checked) + label,
+.form-container .row .col input[type="radio"]:checked + label 
+{
+	position: relative;
+	padding-left: 2.3em;
+	font-size: 1em;
+	line-height: 1.5;
+    cursor: pointer; 
+    color: var(--grey);
+}
+
+.form-container .row .col input[type="radio"]:not(:checked) + label::before,
+.form-container .row .col input[type="radio"]:checked + label::before
+{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #aaa;
+    background: #FFF;
+    border-radius: 100%;
+	transition: all .275s;
+}
+
+.form-container .row .col input[type="radio"]:not(:checked) + label::after,
+.form-container .row .col input[type="radio"]:checked + label::after
+{
+    content: '';
+	position: absolute;
+    left: 6px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    background: var(--main_darker);
+    border-radius: 100%;
+    transition: all .275s;
+}
+
+.form-container .row .col input[type="radio"]:not(:checked) + label::after 
+{
+	opacity: 0;
+	transform: scale(0) rotate(45deg);
+}
+
+.form-container .row .col input[type="radio"]:checked + label::after
+{
+	opacity: 1;
+	transform: scale(1) rotate(0);
 }
 
 footer
@@ -345,7 +424,7 @@ footer .bloc-footer .copyright
 
 .container-connexion
 {
-    background: url('../img/bg-login.jpg');
+    background: url('../img/bg-login-blur.jpg');
 }
 
 .container-inscription
@@ -567,15 +646,15 @@ footer .bloc-footer .copyright
 {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    column-gap: 16px;
+    column-gap: 40px;
 }
 
 .container-liste-plats .bloc-liste-plats .liste-plats .card
 {
     margin-bottom: 32px;
-    padding: 16px;
-    border-right: 1px solid var(--border);
-    text-align: center;
+    background: #FFF;
+    transition-duration: .3s;
+    /*text-align: center;*/
 }
 
 .container-liste-plats .bloc-liste-plats .liste-plats .card .card-img-top
@@ -609,12 +688,13 @@ footer .bloc-footer .copyright
 
 .container-liste-plats .bloc-liste-plats .liste-plats .card .card-body .titre a
 {
-    font-weight: 700;
-    font-size: 14px;
+    font-weight: 600;
+    font-size: 13px;
     color: #000;
     text-decoration: none;
     transition-duration: .3s;
     font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
 }
 
 .container-liste-plats .bloc-liste-plats .liste-plats .card .card-body .titre a:hover
@@ -774,8 +854,8 @@ footer .bloc-footer .copyright
 .container-plat .bloc-plat .informations,
 .container-plat .bloc-plat .informations-supplementaires
 {
-    line-height: 2.5em;
-    font-size: 14px;
+    line-height: 2.7em;
+    font-size: 0.9rem;
     color: var(--grey);
     border-bottom: 1px solid var(--border);
     padding: 8px 0;
@@ -816,13 +896,13 @@ footer .bloc-footer .copyright
 
 .container-ajout-plat
 {
-    padding: 32px;
+    padding: 0 32px;
 }
 
 .container-ajout-plat .bloc-formulaire
 {
-    width: 40%;
-    margin: 0;
+    width: 60%;
+    margin: 0 auto;
 }
 
 .container-ajout-plat .bloc-formulaire .separation
@@ -835,18 +915,24 @@ footer .bloc-footer .copyright
 .container-ajout-plat .bloc-formulaire h1
 {
     text-align: left;
+    font-weight: 700;
 }
 
 .container-ajout-plat .bloc-formulaire .bloc-etape
 {
     padding: 32px 0;
     border-bottom: 1px solid var(--border);
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 2fr;
+    column-gap: 64px;
 }
 
 .container-ajout-plat .bloc-formulaire .etape
 {
-    font-weight: 600;
-    color: var(--main_complement);
+    font-weight: 700;
+    color: var(--main_darker);
+    line-height: 1.7em;
 }
 
 .container-ajout-plat .bloc-formulaire .explication
@@ -858,22 +944,28 @@ footer .bloc-footer .copyright
     font-style: italic;
 }
 
-.container-ajout-plat .bloc-formulaire .bloc-buttons
+.container-ajout-plat .bloc-formulaire .btn-ajouter-plat
 {
-    display: flex;
-    justify-content: space-between;
-}
-
-.container-ajout-plat .bloc-formulaire .bloc-buttons button
-{
-    width: 40%;
-}
-
-.container-ajout-plat .bloc-formulaire .bloc-buttons button.btn-retour
-{
+    display: block;
+    width: 50%;
+    box-shadow: none;
     border: 1px solid var(--main_complement);
     background: #FFF;
     color: var(--main_complement);
+    padding: 12px 16px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition-duration: .3s;
+    margin: 32px auto 0 auto;
+}
+
+.container-ajout-plat .bloc-formulaire .btn-ajouter-plat:hover
+{
+    background: var(--main_complement);
+    color: #FFF;
+    transition-duration: .3s;
 }
 
 /*************************************************************
@@ -915,12 +1007,57 @@ footer .bloc-footer .copyright
 
 /*************************************************************
 
+    MES COMMANDES
+
+**************************************************************/
+
+.container-mes-commandes
+{
+    width: 70%;
+    margin: 0 auto;
+}
+
+.container-mes-commandes .commande
+{
+    padding: 16px 32px;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 2fr;
+    column-gap: 64px;
+}
+
+.container-mes-commandes .commande .bloc-img
+{
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 55.25%;
+}
+
+.container-mes-commandes .commande .bloc-img img
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/*************************************************************
+
     RESPONSIVE DESIGN
 
 **************************************************************/
 
 @media screen and (max-width: 640px) 
 {
+    .navbar .bloc-liens
+    {
+        display: none;
+    }
+    
     .form-container .row .col.l6,
     .form-container .row .col.m6,
     .form-container .row .col.s6

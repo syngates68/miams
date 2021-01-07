@@ -167,6 +167,7 @@ while ($tmp <= $fin)
 <script>
     $('.commander').modaal({
         content_source: '#commander',
-        animation_speed : 100
+        animation_speed : 100,
+        width: 500
     });
 </script>

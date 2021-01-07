@@ -11,7 +11,7 @@
                 </div>
                 <div class="message-validation-commande">
                     <p class="titre">Votre commande a bien été prise en compte.</p>
-                    <p>Cette dernière porte le numéro 04587E41.</p>
+                    <p>Cette dernière porte le numéro <?= $_SESSION['reference']; ?>.</p>
                     <p>Merci de votre confiance.</p>
                 </div>
             </div>
@@ -30,6 +30,7 @@
         });
     </script>
 <?php
+    unset($_SESSION['reference']);
     unset($_SESSION['commande_valide']);
     }
     else

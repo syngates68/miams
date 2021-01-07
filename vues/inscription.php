@@ -39,36 +39,42 @@ $page_title = "S'inscrire";
                 <div class="row">
                     <div class="col l6">
                         <div class="input-form">
-                            <input type="text" name="nom" id="nom" <?php if (isset($_SESSION['_nom'])) : ?>value="<?= $_SESSION['_nom']; ?>"<?php unset($_SESSION['_nom']); endif; ?> placeholder="Nom">
+                            <label for="nom">Nom</label>
+                            <input type="text" name="nom" id="nom" <?php if (isset($_SESSION['_nom'])) : ?>value="<?= $_SESSION['_nom']; ?>"<?php unset($_SESSION['_nom']); endif; ?>>
                         </div>
                     </div>
                     <div class="col l6">
                         <div class="input-form">
-                            <input type="text" name="prenom" id="prenom" <?php if (isset($_SESSION['_prenom'])) : ?>value="<?= $_SESSION['_prenom']; ?>"<?php unset($_SESSION['_prenom']); endif; ?> placeholder="Prénom">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col l6">
-                        <div class="input-form">
-                            <input type="email" name="mail" id="mail" <?php if (isset($_SESSION['_mail'])) : ?>value="<?= $_SESSION['_mail']; ?>"<?php unset($_SESSION['_mail']); endif; ?> placeholder="Adresse mail">
-                        </div>
-                    </div>
-                    <div class="col l6">
-                        <div class="input-form">
-                            <input type="email" name="mail_confirm" id="mail_confirm" placeholder="Confirmation de l'adresse mail">
+                            <label for="prenom">Prénom</label>
+                            <input type="text" name="prenom" id="prenom" <?php if (isset($_SESSION['_prenom'])) : ?>value="<?= $_SESSION['_prenom']; ?>"<?php unset($_SESSION['_prenom']); endif; ?>>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col l6">
                         <div class="input-form">
-                            <input type="password" name="pass" id="pass" placeholder="Mot de passe">
+                            <label for="mail">Adresse mail</label>
+                            <input type="email" name="mail" id="mail" <?php if (isset($_SESSION['_mail'])) : ?>value="<?= $_SESSION['_mail']; ?>"<?php unset($_SESSION['_mail']); endif; ?>>
                         </div>
                     </div>
                     <div class="col l6">
                         <div class="input-form">
-                            <input type="password" name="pass_confirm" id="pass_confirm" placeholder="Confirmation du mot de passe">
+                            <label for="mail_confirm">Confirmation de l'adresse mail</label>
+                            <input type="email" name="mail_confirm" id="mail_confirm">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col l6">
+                        <div class="input-form">
+                            <label for="pass">Mot de passe (6 caractères minimum)</label>
+                            <input type="password" name="pass" id="pass">
+                        </div>
+                    </div>
+                    <div class="col l6">
+                        <div class="input-form">
+                            <label for="pass_confirm">Confirmation du mot de passe</label>
+                            <input type="password" name="pass_confirm" id="pass_confirm">
                         </div>
                     </div>
                 </div>
