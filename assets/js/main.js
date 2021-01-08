@@ -7,6 +7,16 @@ $(document).on('click', '.dropdown-utilisateur', function(e)
         $('.bloc-dropdown-utilisateur').addClass('is-active')
 });
 
+$(document).on('keyup', 'input[name="quantite"]', function()
+{
+    var quantite = parseInt($(this).val());
+
+    if (quantite != '' && Number.isInteger(quantite))
+        $('.montant').text(quantite * $('input[name="prix"]').val());
+    else
+        $('.montant').text('0');
+});
+
 $('#form_commande').submit(function()
 {
     var id_plat = $('input[name="id_plat"]').val();
@@ -33,4 +43,22 @@ $('#form_commande').submit(function()
     });
 
     return false;
+});
+
+$(document).on('click', '.btn-annuler-commande', function()
+{
+    if (confirm("Souhaitez-vous réellement annuler votre commande ? Cette action est irréversible."))
+    {
+        var id_commande = $(this).attr('data-id');
+
+        $.post(baseurl + 'inc/traitement/annuler_commande.php',
+        {
+            id_commande : id_commande
+        },
+        function()
+        {
+            alert('La commande a bien été annulée.');
+            location.reload();
+        });
+    }
 });

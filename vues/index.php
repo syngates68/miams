@@ -59,9 +59,12 @@ if (file_exists('vues/'.$var_page.'.php'))
     </div>
 </div>
 
+    <div class="site-content">
 <?php
-    include($var_page.'.php');
-    
+        include($var_page.'.php');
+?>
+    </div>
+<?php
     $bg_footer = 'bg-img';
     if ($var_page == 'connexion' || $var_page == 'inscription')
         $bg_footer = 'bg-color';

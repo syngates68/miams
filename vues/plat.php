@@ -57,6 +57,7 @@ while ($tmp <= $fin)
             </div>
             <form id="form_commande" action="<?= BASEURL; ?>inc/traitement/valider_commande.php" method="POST">
                 <input type="hidden" name="id_plat" value="<?= $id; ?>">
+                <input type="hidden" name="prix" value="<?= $plat['prix']; ?>">
                 <div class="row">
                     <div class="col l6">
                         <div class="input-form">
@@ -78,6 +79,9 @@ while ($tmp <= $fin)
                         </div>
                     </div>
                 </div>
+                <p style="font-size:12px;line-height:2em;">
+                    Total : <span class="montant">0</span>€
+                </p>
                 <p style="font-size:12px;line-height:2em;">
                     L'heure souhaitée n'est indiquée qu'à titre informatif,
                     afin que le vendeur puisse s'organiser au mieux pour la

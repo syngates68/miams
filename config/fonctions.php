@@ -232,8 +232,25 @@ function update_reference_commande($id_commande, $reference)
 
 function req_commandes_by_utilisateur($id_utilisateur)
 {
-	$sql = "SELECT c.quantite, c.heure_souhaitee, c.montant, c.reference, c.date_commande, p.nom as nom_plat, p.adresse, p.code_postal, p.ville, p.photo_plat FROM commandes c LEFT JOIN plats p ON p.id = c.id_plat WHERE c.id_utilisateur = :id_utilisateur";
+	$sql = "SELECT c.id as id_commande, c.quantite, c.heure_souhaitee, c.montant, c.reference, c.etat, c.date_commande, c.date_recuperation, p.nom as nom_plat, p.adresse, p.code_postal, p.ville, p.photo_plat, CONCAT(u.prenom, ' ', u.nom) as vendeur, u.avatar FROM commandes c LEFT JOIN plats p ON p.id = c.id_plat LEFT JOIN utilisateurs u ON u.id = p.id_utilisateur WHERE c.id_utilisateur = :id_utilisateur AND annule = 0 ORDER BY c.date_commande DESC";
 	$req = db()->prepare($sql);
 	$req->execute(['id_utilisateur' => $id_utilisateur]);
 	return $req->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function req_nb_commandes_en_cours_by_utilisateur($id_utilisateur)
+{
+	$sql = "SELECT COUNT(*) as nbr FROM commandes c WHERE c.id_utilisateur = :id_utilisateur AND c.etat = 0 AND c.annule = 0";
+	$req = db()->prepare($sql);
+	$req->execute(['id_utilisateur' => $id_utilisateur]);
+	return $req->fetchAll(PDO::FETCH_ASSOC)[0]['nbr'];
+}
+
+
+function req_total_depenses($id_utilisateur)
+{
+	$sql = "SELECT SUM(c.montant) as total FROM commandes c WHERE c.id_utilisateur = :id_utilisateur AND c.annule = 0";
+	$req = db()->prepare($sql);
+	$req->execute(['id_utilisateur' => $id_utilisateur]);
+	return $req->fetchAll(PDO::FETCH_ASSOC)[0]['total'];
 }

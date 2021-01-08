@@ -9,10 +9,18 @@
     box-sizing: border-box;
 }
 
+html
+{
+    height: 100%;
+}
+
 body
 {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
     --main: #FDF24C;
     --main_hover: #fddc4c;
     --main_darker: #fdb64c;
@@ -27,6 +35,11 @@ body
     --link:  #2f4ccd;
     --link_hover:  #1d3396;
     --grey: #444444;
+}
+
+.site-content
+{
+    flex-grow: 1;
 }
 
 .button
@@ -1013,29 +1026,71 @@ footer .bloc-footer .copyright
 
 .container-mes-commandes
 {
-    width: 70%;
+    width: 50%;
     margin: 0 auto;
 }
 
 .container-mes-commandes .commande
 {
-    padding: 16px 32px;
-    border-bottom: 1px solid var(--border);
+    margin: 16px 0;
+    background: #fafafa;
+    padding: 32px;
     display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: 16px;
     align-items: center;
-    grid-template-columns: 1fr 2fr;
-    column-gap: 64px;
 }
 
-.container-mes-commandes .commande .bloc-img
+.container-mes-commandes .commande .bloc-gauche
+{
+    background: #FFF;
+    padding: 16px;
+    border-radius: 5px;
+    box-shadow: 0 1px 4px #bababa80;
+}
+
+.container-mes-commandes .commande .bloc-gauche .etat
+{
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.container-mes-commandes .commande .bloc-gauche .etat0
+{
+    color: var(--grey);
+}
+
+.container-mes-commandes .commande .bloc-gauche .etat1
+{
+    color: var(--valid);
+}
+
+.container-mes-commandes .commande .bloc-gauche .etat .material-icons
+{
+    margin-right: 8px;
+    font-size: 21px;
+}
+
+.container-mes-commandes .commande .bloc-gauche .vendeur
+{
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    padding: 16px 0;
+}
+
+.container-mes-commandes .commande .bloc-gauche .vendeur .bloc-img
 {
     position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 55.25%;
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
 }
 
-.container-mes-commandes .commande .bloc-img img
+.container-mes-commandes .commande .bloc-gauche .vendeur .bloc-img img
 {
     position: absolute;
     top: 0;
@@ -1043,6 +1098,55 @@ footer .bloc-footer .copyright
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 100%;
+    border: 1px solid var(--main_darker);
+    padding: 2px;
+}
+
+.container-mes-commandes .commande .bloc-gauche .reference
+{
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.container-mes-commandes .commande .bloc-gauche .date-commande
+{
+    font-size: 12px;
+    color: var(--grey);
+}
+
+.container-mes-commandes .commande .bloc-gauche .recapitulatif ul
+{
+    padding: 0;
+}
+
+.container-mes-commandes .commande .bloc-gauche .recapitulatif ul li
+{
+    list-style-type: none;
+    font-size: 11px;
+    padding: 4px 0;
+}
+
+.container-mes-commandes .commande .bloc-droit
+{
+    padding:  0 16px;
+}
+
+.container-mes-commandes .commande .bloc-droit .btn-annuler-commande
+{
+    width: 100%;
+    background: var(--error);
+    border: 1px solid var(--error);
+    color: #FFF;
+}
+
+.container-mes-commandes .commande .bloc-droit .btn-modifier-commande
+{
+    width: 100%;
+    background: none;
+    border: 1px solid var(--main_complement);
+    color: var(--main_complement);
+    margin-top: 8px;
 }
 
 /*************************************************************
