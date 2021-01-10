@@ -42,9 +42,9 @@ while ($tmp <= $fin)
 ?>
 
 <div class="container-plat">
-    <div id="commander" style="display:none;">
+    <div id="reserver" style="display:none;">
         <p style="font-size:12px;line-height:2em;">
-            Afin de finaliser votre commande, veuillez remplir les
+            Afin de finaliser votre réservation, veuillez remplir les
             champs ci-dessous.
             <br/> 
             Ces informations seront transmises au
@@ -55,7 +55,7 @@ while ($tmp <= $fin)
                 <span class="material-icons">error</span>
                 <span class="message"></span>
             </div>
-            <form id="form_commande" action="<?= BASEURL; ?>inc/traitement/valider_commande.php" method="POST">
+            <form id="form_reservation" action="<?= BASEURL; ?>inc/traitement/valider_reservation.php" method="POST">
                 <input type="hidden" name="id_plat" value="<?= $id; ?>">
                 <input type="hidden" name="prix" value="<?= $plat['prix']; ?>">
                 <div class="row">
@@ -85,16 +85,20 @@ while ($tmp <= $fin)
                 <p style="font-size:12px;line-height:2em;">
                     L'heure souhaitée n'est indiquée qu'à titre informatif,
                     afin que le vendeur puisse s'organiser au mieux pour la
-                    récupération des commandes.
+                    récupération des plats réservés.
                 </p>
-                <button class="button" name="submit_commande">Valider la commande</button>
+                <button class="button" name="submit_reservation">Valider la réservation</button>
             </form>
         </div>
     </div>
     <div class="bloc-plat">
-        <div class="titre"><?= $plat['nom_plat']; ?></div>
-        <div class="vendeur">Proposé par <?= $plat['vendeur']; ?> (<a href="#">contacter</a>) le <?= formate_date_heure($plat['date_publication']); ?></div>
-        <button class="button commander"><span class="material-icons">shopping_cart</span>Commander</button>
+        <div class="bloc-plat-top">
+            <div class="bloc-informations-principales">
+                <div class="titre"><?= $plat['nom_plat']; ?></div>
+                <div class="vendeur">Proposé par <?= $plat['vendeur']; ?> (<a href="#">contacter</a>) le <?= formate_date_heure($plat['date_publication']); ?></div>
+            </div>
+            <button class="button reserver">Réserve ta part<span class="material-icons">beenhere</span></button>
+        </div>
         <div class="image-plat">
             <img src="<?= BASEURL; ?>assets/img/<?= $plat['photo_plat']; ?>" alt="Photo du plat">
         </div>
@@ -169,8 +173,8 @@ while ($tmp <= $fin)
     </div>
 </div>
 <script>
-    $('.commander').modaal({
-        content_source: '#commander',
+    $('.reserver').modaal({
+        content_source: '#reserver',
         animation_speed : 100,
         width: 500
     });

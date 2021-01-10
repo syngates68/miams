@@ -202,9 +202,13 @@ function ajouter_commande($id_utilisateur, $quantite, $heure_souhaitee, $montant
 	]);
 }
 
-function update_quantite_plat($id_plat, $quantite)
+function update_quantite_plat($id_plat, $quantite, $more)
 {
-	$sql = "UPDATE plats SET quantite = quantite - :quantite WHERE id = :id";
+	$op = '+';
+	if (!$more)
+		$op = '-';
+
+	$sql = "UPDATE plats SET quantite = quantite $op :quantite WHERE id = :id";
 	$upd = db()->prepare($sql);
 	$upd->execute([
 		'quantite' => $quantite,
@@ -253,4 +257,22 @@ function req_total_depenses($id_utilisateur)
 	$req = db()->prepare($sql);
 	$req->execute(['id_utilisateur' => $id_utilisateur]);
 	return $req->fetchAll(PDO::FETCH_ASSOC)[0]['total'];
+}
+
+function annuler_commande($id_commande)
+{
+	$sql = "UPDATE commandes SET annule = 1 WHERE id = :id";
+	$upd = db()->prepare($sql);
+	$upd->execute([
+		'id' => $id_commande
+	]);
+}
+
+function req_commande_by_id($id_commande)
+{
+	$sql = "SELECT * FROM commandes WHERE id = :id_commande";
+	$req = db()->prepare($sql);
+	$req->execute(['id_commande' => $id_commande]);
+	
+	return $req->fetch(PDO::FETCH_ASSOC);
 }

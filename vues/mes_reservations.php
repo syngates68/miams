@@ -3,10 +3,10 @@ $page_title = 'Mes commandes';
 ?>
 
 <div class="container-mes-commandes">
-    <h1>Mes commandes</h1>
+    <h1>Mes réservations</h1>
         <?php if (sizeof(req_commandes_by_utilisateur($_SESSION['utilisateur'])) > 0) : ?>
             <div class="liste-commandes">
-                <div class="nbr-commandes">Vous avez actuellement <?= req_nb_commandes_en_cours_by_utilisateur($_SESSION['utilisateur']); ?> commande(s) en cours.</div>
+                <div class="nbr-commandes">Vous avez actuellement <?= req_nb_commandes_en_cours_by_utilisateur($_SESSION['utilisateur']); ?> réservation(s) en cours.</div>
                 <?php foreach (req_commandes_by_utilisateur($_SESSION['utilisateur']) as $c) : ?>
                     <div class="commande">
                         <div class="bloc-gauche">
@@ -38,8 +38,8 @@ $page_title = 'Mes commandes';
                         </div>
                         <div class="bloc-droit">
                             <?php if ($c['etat'] == 0) : ?>
-                                <button class="button btn-annuler-commande" data-id="<?= $c['id_commande']; ?>">Annuler</button>
-                                <button class="button btn-modifier-commande">Modifier</button>
+                                <button class="button btn-annuler-reservation" data-id="<?= $c['id_commande']; ?>">Annuler</button>
+                                <button class="button btn-modifier-reservation">Modifier</button>
                             <?php endif; ?>      
                         </div>
                     </div>

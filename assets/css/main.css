@@ -26,6 +26,7 @@ body
     --main_darker: #fdb64c;
     --main_lighter: #f8f18d;
     --main_complement: #4c57fd;
+    --main_complement_lighter: #8f96ff;
     --border: #E0E0E0;
     --placeholder: #828282;
     --error: #ec4444;
@@ -222,6 +223,7 @@ body
     border-radius: 5px;
     border: 1px solid var(--border);
     box-shadow: 0 1px 4px #bababa80;
+    z-index: 2;
 }
 
 .navbar .bloc-dropdown-utilisateur.is-active
@@ -786,14 +788,21 @@ footer .bloc-footer .copyright
     padding: 8px 0;
 }
 
-.container-plat .bloc-plat .titre
+.container-plat .bloc-plat .bloc-plat-top
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container-plat .bloc-plat .bloc-informations-principales .titre
 {
     font-size: 30px;
     font-weight: 900;
     font-family: 'Roboto', sans-serif;
 }
 
-.container-plat .bloc-plat .vendeur
+.container-plat .bloc-plat .bloc-informations-principales .vendeur
 {
     font-size: 13px;
     font-weight: 400;
@@ -801,24 +810,23 @@ footer .bloc-footer .copyright
     color: var(--grey);
 }
 
-.container-plat .bloc-plat .vendeur a
+.container-plat .bloc-plat .bloc-informations-principales .vendeur a
 {
     color: var(--link);
     text-decoration: none;
     font-weight: 600;
 }
 
-.container-plat .bloc-plat .vendeur a:hover
+.container-plat .bloc-plat .bloc-informations-principales .vendeur a:hover
 {
     color: var(--link_hover);
 }
 
 .container-plat .bloc-plat button
 {
-    border: 1px solid var(--main_darker);
-    background: none;
-    color: var(--main_darker);
-    margin: 24px 0;
+    border: 1px solid var(--main_complement);
+    background: var(--main_complement);
+    color: #FFF;
     display: flex;
     align-items: center;
     font-weight: 500;
@@ -829,13 +837,14 @@ footer .bloc-footer .copyright
 
 .container-plat .bloc-plat button .material-icons
 {
-    margin-right: 8px;
+    margin-left: 8px;
     font-size: 17px;
 }
 
 .container-plat .bloc-plat button:hover
 {
-    background: var(--main_darker);
+    border: 1px solid var(--main_complement_lighter);
+    background: var(--main_complement_lighter);
     color: #FFF;
     transition-duration: .3s;
 }
@@ -1129,10 +1138,10 @@ footer .bloc-footer .copyright
 
 .container-mes-commandes .commande .bloc-droit
 {
-    padding:  0 16px;
+    padding: 0 16px;
 }
 
-.container-mes-commandes .commande .bloc-droit .btn-annuler-commande
+.container-mes-commandes .commande .bloc-droit .btn-annuler-reservation
 {
     width: 100%;
     background: var(--error);
@@ -1140,7 +1149,7 @@ footer .bloc-footer .copyright
     color: #FFF;
 }
 
-.container-mes-commandes .commande .bloc-droit .btn-modifier-commande
+.container-mes-commandes .commande .bloc-droit .btn-modifier-reservation
 {
     width: 100%;
     background: none;
@@ -1224,6 +1233,22 @@ footer .bloc-footer .copyright
     {
         width: 100%;
     }
+
+    .container-mes-commandes
+    {
+        width: 100%;
+        padding: 16px;
+    }
+
+    .container-mes-commandes .commande
+    {
+        display: block;
+    }
+
+    .container-mes-commandes .commande .bloc-droit
+    {
+        padding: 16px 0;
+    }
 }
 
 @media screen and (min-width: 640px) and (max-width: 1024px)
@@ -1248,6 +1273,7 @@ footer .bloc-footer .copyright
     {
         width: 100%;
     }
+    
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1400px)
@@ -1273,7 +1299,17 @@ footer .bloc-footer .copyright
         width: 90%;
     }
 
+    .container-ajout-plat .bloc-formulaire
+    {
+        width: 70%;
+    }
+
     .container-plat .bloc-plat
+    {
+        width: 70%;
+    }
+
+    .container-mes-commandes
     {
         width: 70%;
     }

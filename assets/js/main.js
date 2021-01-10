@@ -17,13 +17,13 @@ $(document).on('keyup', 'input[name="quantite"]', function()
         $('.montant').text('0');
 });
 
-$('#form_commande').submit(function()
+$('#form_reservation').submit(function()
 {
     var id_plat = $('input[name="id_plat"]').val();
     var quantite = $('input[name="quantite"]').val();
     var heure = $('select[name="heure"]').val();
 
-    $.post(baseurl + 'inc/traitement/valider_commande.php',
+    $.post(baseurl + 'inc/traitement/valider_reservation.php',
     {
         id_plat : id_plat,
         quantite : quantite,
@@ -38,26 +38,26 @@ $('#form_commande').submit(function()
         }
         else
         {
-            window.location.href = baseurl + 'commande_valide.html';
+            window.location.href = baseurl + 'reservation_valide.html';
         }
     });
 
     return false;
 });
 
-$(document).on('click', '.btn-annuler-commande', function()
+$(document).on('click', '.btn-annuler-reservation', function()
 {
-    if (confirm("Souhaitez-vous réellement annuler votre commande ? Cette action est irréversible."))
+    if (confirm("Souhaitez-vous réellement annuler votre réservation ? Cette action est irréversible."))
     {
         var id_commande = $(this).attr('data-id');
 
-        $.post(baseurl + 'inc/traitement/annuler_commande.php',
+        $.post(baseurl + 'inc/traitement/annuler_reservation.php',
         {
             id_commande : id_commande
         },
         function()
         {
-            alert('La commande a bien été annulée.');
+            alert('La réservation a bien été annulée.');
             location.reload();
         });
     }
