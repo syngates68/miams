@@ -33,7 +33,7 @@ if (file_exists('vues/'.$var_page.'.php'))
             </div>
             <div class="bloc-dropdown-utilisateur">
                 <div class="lien-dropdown">
-                    <span class="material-icons">local_shipping</span>
+                    <span class="material-icons">beenhere</span>
                     <a href="<?= BASEURL; ?>mes_reservations.html">Mes réservations</a>
                 </div>
                 <div class="lien-dropdown">
