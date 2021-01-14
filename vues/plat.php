@@ -43,7 +43,7 @@ while ($tmp <= $fin)
 
 <div class="container-plat">
     <div id="reserver" style="display:none;">
-        <p style="font-size:12px;line-height:2em;">
+        <p style="font-size:16px;line-height:2em;color:#08133b;font-weight:600;">
             Afin de finaliser votre réservation, veuillez remplir les
             champs ci-dessous.
             <br/> 
@@ -82,7 +82,7 @@ while ($tmp <= $fin)
                 <p style="font-size:12px;line-height:2em;">
                     Total : <span class="montant">0</span>€
                 </p>
-                <p style="font-size:12px;line-height:2em;">
+                <p style="font-size:16px;line-height:2em;color:#08133b;font-weight:600;">
                     L'heure souhaitée n'est indiquée qu'à titre informatif,
                     afin que le vendeur puisse s'organiser au mieux pour la
                     récupération des plats réservés.
@@ -92,83 +92,89 @@ while ($tmp <= $fin)
         </div>
     </div>
     <div class="bloc-plat">
-        <div class="bloc-plat-top">
-            <div class="bloc-informations-principales">
-                <div class="titre"><?= $plat['nom_plat']; ?></div>
-                <div class="vendeur">Proposé par <?= $plat['vendeur']; ?> (<a href="#">contacter</a>) le <?= formate_date_heure($plat['date_publication']); ?></div>
+        <div class="bloc-plat-header">
+            <div class="bloc-plat-top">
+                <div class="bloc-informations-principales">
+                    <div class="titre"><?= $plat['nom_plat']; ?></div>
+                    <div class="vendeur">Proposé par <?= $plat['vendeur']; ?> (<a href="#">contacter</a>) le <?= formate_date_heure($plat['date_publication']); ?></div>
+                </div>
+                <button class="button reserver">Réserver votre part<span class="material-icons">beenhere</span></button>
             </div>
-            <button class="button reserver">Réserve ta part<span class="material-icons">beenhere</span></button>
+            <div class="image-plat">
+                <img src="<?= BASEURL; ?>assets/img/<?= $plat['photo_plat']; ?>" alt="Photo du plat">
+            </div>
         </div>
-        <div class="image-plat">
-            <img src="<?= BASEURL; ?>assets/img/<?= $plat['photo_plat']; ?>" alt="Photo du plat">
-        </div>
-        <div class="informations">
-            <p>Informations :</p>
-            <div class="prix"><?= $plat['prix']; ?>€/unité</div>
-            <div class="quantite">Reste <?= $plat['quantite']; ?></div>
-            <div class="heures">Disponible de <?= $plat['heure_debut']; ?> à <?= $plat['heure_fin']; ?></div>
-            <div class="adresse"><?= $plat['adresse'].' '.$plat['ville'].' '.$plat['code_postal']; ?></div>
-        </div>
-        <div class="informations-supplementaires">
-            <p>Informations supplémentaires :</p>
-            <?php
-                if ($plat['informations_supplementaires'] != NULL)
-                {
-            ?>
-                    <?= $plat['informations_supplementaires']; ?>
-            <?php
-                }
-                else
-                {
-            ?>
-                    <span>Aucune information supplémentaire</span>
-            <?php
-                }
-            ?>
-        </div>
-        <div class="informations-supplementaires">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Allergènes</th>
-                        <th>Contient</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><B>Céréales contenant du gluten</B></td>
-                        <td>X</td>
-                    </tr>
-                    <tr>
-                        <td>Crustacés</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Oeufs</td>
-                        <td>X</td>
-                    </tr>
-                    <tr>
-                        <td>Poissons</td>
-                        <td>X</td>
-                    </tr>
-                    <tr>
-                        <td>Arachides</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Soja</td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="alert alert-info">
-            <span class="material-icons">info</span>
-            <span class="message">
-                Si vous êtes victimes d'allergies ou d'intolérence à un aliment, 
-                n'hésitez pas à contacter le vendeur afin de savoir si le plat 
-                ne représente aucun danger pour votre santé.
-            </span>
+        <div class="bloc-plat-body">
+            <div class="bloc-plat-content">
+                <div class="informations">
+                    <p>Informations :</p>
+                    <div class="prix"><?= $plat['prix']; ?>€/unité</div>
+                    <div class="quantite">Reste <?= $plat['quantite']; ?></div>
+                    <div class="heures">Disponible de <?= $plat['heure_debut']; ?> à <?= $plat['heure_fin']; ?></div>
+                    <div class="adresse"><span class="material-icons">room</span><?= $plat['adresse'].' '.$plat['ville'].' '.$plat['code_postal']; ?></div>
+                </div>
+                <div class="informations-supplementaires">
+                    <p>Informations supplémentaires :</p>
+                    <?php
+                        if ($plat['informations_supplementaires'] != NULL)
+                        {
+                    ?>
+                            <?= $plat['informations_supplementaires']; ?>
+                    <?php
+                        }
+                        else
+                        {
+                    ?>
+                            <span>Aucune information supplémentaire</span>
+                    <?php
+                        }
+                    ?>
+                </div>
+                <div class="informations-supplementaires">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Allergènes</th>
+                                <th>Contient</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><B>Céréales contenant du gluten</B></td>
+                                <td>X</td>
+                            </tr>
+                            <tr>
+                                <td>Crustacés</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Oeufs</td>
+                                <td>X</td>
+                            </tr>
+                            <tr>
+                                <td>Poissons</td>
+                                <td>X</td>
+                            </tr>
+                            <tr>
+                                <td>Arachides</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Soja</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="alert alert-info">
+                    <span class="material-icons">info</span>
+                    <span class="message">
+                        Si vous êtes victimes d'allergies ou d'intolérence à un aliment, 
+                        n'hésitez pas à contacter le vendeur afin de savoir si le plat 
+                        ne représente aucun danger pour votre santé.
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -176,6 +182,6 @@ while ($tmp <= $fin)
     $('.reserver').modaal({
         content_source: '#reserver',
         animation_speed : 100,
-        width: 500
+        width: 700
     });
 </script>

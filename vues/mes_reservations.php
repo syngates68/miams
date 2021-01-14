@@ -1,12 +1,15 @@
 <?php
-$page_title = 'Mes commandes';
+$page_title = 'Mes réservations';
 ?>
 
 <div class="container-mes-commandes">
-    <h1>Mes réservations</h1>
+    <div class="mes-commandes-header">
+        <h1>Mes réservations</h1>
+        <div class="nbr-commandes">Vous avez actuellement <?= req_nb_commandes_en_cours_by_utilisateur($_SESSION['utilisateur']); ?> réservation(s) en cours.</div>
+    </div>
+    <div class="mes-commandes-body">
         <?php if (sizeof(req_commandes_by_utilisateur($_SESSION['utilisateur'])) > 0) : ?>
             <div class="liste-commandes">
-                <div class="nbr-commandes">Vous avez actuellement <?= req_nb_commandes_en_cours_by_utilisateur($_SESSION['utilisateur']); ?> réservation(s) en cours.</div>
                 <?php foreach (req_commandes_by_utilisateur($_SESSION['utilisateur']) as $c) : ?>
                     <div class="commande">
                         <div class="bloc-gauche">
@@ -31,7 +34,7 @@ $page_title = 'Mes commandes';
                                             <li class="etat1">Récupérée le <?= formate_date_heure($c['date_recuperation']); ?></li>
                                         <?php endif; ?>
                                         <li>Adresse : <?= $c['adresse'].' '.$c['code_postal'].' '.$c['ville']; ?></li>
-                                        <li><B>Montant total : <?= $c['montant']; ?>€</B></li>
+                                        <li class="montant-total">Montant total : <?= $c['montant']; ?>€</li>
                                     </ul>
                                 </div>
                             </div>
@@ -48,4 +51,5 @@ $page_title = 'Mes commandes';
         <?php else : ?>
             Vous n'avez pas encore passé de commande.<br/>
         <?php endif; ?>
+    </div>
 </div>

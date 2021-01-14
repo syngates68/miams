@@ -25,15 +25,16 @@ $page_title = "Se connecter";
                 <div class="row">
                     <div class="col l12">
                         <div class="input-form">
-                            <input type="email" name="mail" id="mail" placeholder="Adresse mail">
+                            <label for="mail">Adresse mail</label>
+                            <input type="email" name="mail" id="mail">
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col l12">
                         <div class="input-form">
-                            <input type="password" name="pass" id="pass" placeholder="Mot de passe">
-                            <p class="mot-de-passe-oublie">Mot de passe oublié</p>
+                            <label for="pass">Mot de passe</label>
+                            <input type="password" name="pass" id="pass">
                         </div>
                     </div>
                 </div>
