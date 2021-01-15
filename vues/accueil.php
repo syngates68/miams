@@ -16,7 +16,7 @@ $page_title = "Accueil";
                 <?php foreach (req_liste_plats() as $p) : ?>
                     <div class="card">
                         <div class="card-img-top">
-                            <img src="<?= BASEURL; ?>assets/img/<?= $p['photo_plat']; ?>">
+                            <img src="<?= BASEURL; ?><?= $p['photo_plat']; ?>">
                         </div>
                         <div class="card-body">
                             <div class="titre"><a href="<?= BASEURL; ?>plat/<?= $p['slug'].'-'.$p['id_plat']; ?>.html"><?= $p['nom_plat']; ?></a></div>

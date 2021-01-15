@@ -31,7 +31,7 @@
                     unset($_SESSION['success_ajout']) ;
                     }
                 ?>    
-                <form method="POST" action="<?= BASEURL; ?>inc/traitement/ajout_plat.php">
+                <form method="POST" action="<?= BASEURL; ?>inc/traitement/ajout_plat.php" enctype="multipart/form-data">
                     <div class="form-container">
                         <?php 
                             include('./inc/etape1.php');

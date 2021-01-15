@@ -101,7 +101,7 @@ while ($tmp <= $fin)
                 <button class="button reserver">Réserver votre part<span class="material-icons">beenhere</span></button>
             </div>
             <div class="image-plat">
-                <img src="<?= BASEURL; ?>assets/img/<?= $plat['photo_plat']; ?>" alt="Photo du plat">
+                <img src="<?= BASEURL; ?><?= $plat['photo_plat']; ?>" alt="Photo du plat">
             </div>
         </div>
         <div class="bloc-plat-body">

@@ -151,7 +151,7 @@ function req_utilisateur_by_id($id)
 
 function req_liste_plats()
 {
-	$sql = "SELECT CONCAT(u.prenom, ' ', u.nom) as vendeur, p.id as id_plat, p.nom as nom_plat, p.prix, p.quantite, p.heure_debut, p.heure_fin, p.date_publication, p.slug, p.adresse, p.code_postal, p.ville, p.photo_plat FROM plats p LEFT JOIN utilisateurs u ON u.id = p.id_utilisateur";
+	$sql = "SELECT CONCAT(u.prenom, ' ', u.nom) as vendeur, p.id as id_plat, p.nom as nom_plat, p.prix, p.quantite, p.heure_debut, p.heure_fin, p.date_publication, p.slug, p.adresse, p.code_postal, p.ville, p.photo_plat FROM plats p LEFT JOIN utilisateurs u ON u.id = p.id_utilisateur ORDER BY p.date_publication DESC";
 	$req = db()->prepare($sql);
 	$req->execute();
 	
@@ -167,9 +167,9 @@ function req_plat_by_id($id_plat)
 	return $req->fetch(PDO::FETCH_ASSOC);
 }
 
-function ajouter_plat($nom, $type_plat, $prix, $quantite, $heure_debut, $heure_fin, $adresse, $code_postal, $ville, $informations_supplementaires, $id_utilisateur)
+function ajouter_plat($nom, $type_plat, $prix, $quantite, $heure_debut, $heure_fin, $adresse, $code_postal, $ville, $informations_supplementaires, $image, $id_utilisateur)
 {
-	$sql = "INSERT INTO plats(nom, type_plat, prix, quantite, heure_debut, heure_fin, adresse, code_postal, ville, informations_supplementaires, photo_plat, slug, id_utilisateur, date_publication) VALUES (:nom, :type_plat, :prix, :quantite, :heure_debut, :heure_fin, :adresse, :code_postal, :ville, :informations_supplementaires, 'bg-login.jpg', :slug, :id_utilisateur, :date_publication)";
+	$sql = "INSERT INTO plats(nom, type_plat, prix, quantite, heure_debut, heure_fin, adresse, code_postal, ville, informations_supplementaires, photo_plat, slug, id_utilisateur, date_publication) VALUES (:nom, :type_plat, :prix, :quantite, :heure_debut, :heure_fin, :adresse, :code_postal, :ville, :informations_supplementaires, :photo, :slug, :id_utilisateur, :date_publication)";
 	$ins = db()->prepare($sql);
 	$ins->execute([
 		'nom' => $nom,
@@ -182,6 +182,7 @@ function ajouter_plat($nom, $type_plat, $prix, $quantite, $heure_debut, $heure_f
 		'code_postal' => $code_postal,
 		'ville' => $ville,
 		'informations_supplementaires' => $informations_supplementaires,
+		'photo' => $image,
 		'slug' => slugify($nom),
 		'id_utilisateur' => $id_utilisateur,
 		'date_publication' => date('Y-m-d H:i:s')
@@ -275,4 +276,54 @@ function req_commande_by_id($id_commande)
 	$req->execute(['id_commande' => $id_commande]);
 	
 	return $req->fetch(PDO::FETCH_ASSOC);
+}
+
+function upload_image(array $fichier)
+{
+    $max_size = 1000000;
+    $types = array('image/jpg', 'image/png', 'image/jpeg');
+    $fichier_temp = $fichier['tmp_name'];
+
+    $type = $fichier['type'];
+    $size = $fichier['size'];
+    $dossier = '../../assets/plats/';
+
+    $msg = '';
+
+    if(in_array($type, $types))
+    {
+        if ($type == 'image/jpg')
+            $type = '.jpg';
+
+        if ($type == 'image/png')
+            $type = '.png';
+
+        if ($type == 'image/jpeg')
+            $type = '.jpeg';
+
+        if($size < $max_size)
+        {
+            $char = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+            $string = '';
+            for($j = 0; $j < 9; $j++)
+            {
+                $string .= $char[rand(0, strlen($char)-1)];
+            }
+
+            $nom_fichier = $string.$type;
+            $url = $dossier.$nom_fichier;
+
+            if(move_uploaded_file($fichier_temp, $url))
+                $msg = '1';
+            else
+                $msg = '0Une erreur innatendue s\'est produite durant le téléchargement de votre image.';
+        }
+        else
+            $msg = '0L\'illustration choisie est trop lourde.';
+    }
+    else
+        $msg = '0L\'illustration doit être au format PNG, JPG ou JPEG.';
+
+    return [$msg, $url];
 }

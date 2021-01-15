@@ -1,14 +1,22 @@
+<?php
+
+$is = '';
+
+if (isset($_SESSION['informations_supplementaires']) && $_SESSION['informations_supplementaires'] != NULL)
+{
+    $is = $_SESSION['informations_supplementaires'];
+}
+
+?>
+
 <div class="bloc-etape">
-    <div class="bloc-etape-gauche">
-        <div class="etape">Etape 4</div>
+    <div class="etape">
+        4.Informations supplémentaires
     </div>
-    <div class="bloc-etape-droit">
-        <div class="row">
-            <div class="col l12">
-                <div class="input-form">
-                    <label for="informations_supplementaires">Informations supplémentaires</label>
-                    <textarea name="informations_supplementaires" id="informations_supplementaires"></textarea>
-                </div>
+    <div class="row">
+        <div class="col l12">
+            <div class="input-form">
+                <textarea name="informations_supplementaires" id="informations_supplementaires"><?= $is; ?></textarea>
             </div>
         </div>
     </div>

@@ -274,6 +274,7 @@ h1
 
 .form-container .row
 {
+    padding: 16px 0;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -338,6 +339,11 @@ h1
     border: 1px solid #2fa8cd8e;
     box-shadow: 0 0 1px 1px #2fa8cd8e;
     transition-duration: .3s;
+}
+
+.form-container .row .col .input-form .error-input
+{
+    border: 1px solid var(--error);
 }
 
 .form-container .radio
@@ -1015,30 +1021,49 @@ footer .bloc-footer .copyright
     font-size: 52px;
 }
 
-.container-ajout-plat .bloc-formulaire .bloc-etape
+.container-ajout-plat .bloc-etape
 {
     padding: 32px 0;
-    border-bottom: 1px solid var(--border);
-    display: grid;
-    align-items: center;
-    grid-template-columns: 1fr 2fr;
-    column-gap: 64px;
+    border-bottom: 2px solid var(--border);
 }
 
 .container-ajout-plat .bloc-formulaire .etape
 {
-    font-weight: 700;
-    color: var(--main_darker);
+    font-weight: 800;
+    color: var(--write);
     line-height: 1.7em;
+    text-transform: uppercase;
 }
 
-.container-ajout-plat .bloc-formulaire .explication
+.container-ajout-plat .bloc-formulaire .bloc-photo-plat
 {
-    padding: 16px 0;
-    line-height: 1.7em;
-    font-size: 14px;
-    color: var(--grey);
-    font-style: italic;
+    height: 300px;
+    border: 1px solid var(--border);
+    margin-top: 16px;
+    background: var(--bg_grey);
+    position: relative;
+    transition-duration: .3s;
+}
+
+.container-ajout-plat .bloc-formulaire .bloc-photo-plat:hover
+{
+    cursor: pointer;
+    transition-duration: .3s;
+    opacity: 0.5;
+}
+
+.container-ajout-plat .bloc-formulaire .bloc-photo-plat .photo-plat
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.container-ajout-plat .bloc-formulaire .bloc-photo-plat .photo-plat p
+{
+    font-weight: 700;
 }
 
 .container-ajout-plat .bloc-formulaire .btn-ajouter-plat
@@ -1051,11 +1076,11 @@ footer .bloc-footer .copyright
     color: var(--main_complement);
     padding: 12px 16px;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     transition-duration: .3s;
-    margin: 32px auto 0 auto;
+    margin: 32px 0;
 }
 
 .container-ajout-plat .bloc-formulaire .btn-ajouter-plat:hover
@@ -1302,14 +1327,14 @@ footer .bloc-footer .copyright
         margin: 32px 0;
     }*/
 
-    .container-liste-plats .bloc-liste-plats
+    .container-liste-plats .bloc-liste-plats .liste-header
     {
         width: 90%;
-        padding: 100px 8px;
     }
 
-    .container-liste-plats .bloc-liste-plats .liste-plats
+    .container-liste-plats .bloc-liste-plats .liste-plats .liste-plats-content
     {
+        width: 90%;
         grid-template-columns: 1fr;
     }
 
@@ -1318,9 +1343,14 @@ footer .bloc-footer .copyright
         padding: 100px 8px;
     }
 
-    .container-plat .bloc-plat
+    .container-plat .bloc-plat .bloc-plat-header
     {
-        width: 100%;
+        width: 90%;
+    }
+
+    .container-plat .bloc-plat .bloc-plat-header .bloc-plat-top
+    {
+        display: block;
     }
 
     .container-plat .bloc-plat .vendeur
@@ -1330,15 +1360,29 @@ footer .bloc-footer .copyright
         color: var(--grey);
     }
 
+    .container-plat .bloc-plat .bloc-plat-header button
+    {
+        margin-top: 16px;
+    }
+
+    .container-plat .bloc-plat .bloc-plat-body .bloc-plat-content
+    {
+        width: 90%;
+    }
+
     .container-ajout-plat .bloc-formulaire
     {
         width: 100%;
     }
 
-    .container-mes-commandes
+    .container-mes-commandes .mes-commandes-header
     {
-        width: 100%;
-        padding: 16px;
+        width: 90%;
+    }
+
+    .container-mes-commandes .liste-commandes
+    {
+        width: 90%;
     }
 
     .container-mes-commandes .commande
@@ -1395,9 +1439,9 @@ footer .bloc-footer .copyright
         margin: 32px 0;
     }*/
 
-    .container-liste-plats .bloc-liste-plats
+    .container-liste-plats .bloc-liste-plats .liste-plats .liste-plats-content
     {
-        width: 90%;
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .container-ajout-plat .bloc-formulaire
@@ -1405,13 +1449,4 @@ footer .bloc-footer .copyright
         width: 70%;
     }
 
-    .container-plat .bloc-plat
-    {
-        width: 70%;
-    }
-
-    .container-mes-commandes
-    {
-        width: 70%;
-    }
 }
