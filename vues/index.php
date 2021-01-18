@@ -18,12 +18,16 @@ if (file_exists('vues/'.$var_page.'.php'))
             $user = req_utilisateur_by_id($_SESSION['utilisateur']);
         ?>
             <div class="bloc-notifications">
-                <span class="material-icons">notifications</span>
-                <div class="notification">1</div>
+                <span class="material-icons">notifications_none</span>
+                <?php if (req_nbr_notifications_by_user($_SESSION['utilisateur']) > 0) : ?> 
+                    <div class="notification"></div>
+                <?php endif; ?>
             </div>
             <div class="bloc-messages">
-                <span class="material-icons">chat_bubble</span>
-                <div class="notification">1</div>
+                <span class="material-icons">chat_bubble_outline</span>
+                <?php if (req_nbr_messages_by_user($_SESSION['utilisateur']) > 0) : ?> 
+                    <div class="notification"></div>
+                <?php endif; ?>
             </div>
             <div class="bloc-utilisateur">
                 <div class="bloc-avatar dropdown-utilisateur">
@@ -47,6 +51,30 @@ if (file_exists('vues/'.$var_page.'.php'))
                 <div class="lien-dropdown">
                     <span class="material-icons">meeting_room</span>
                     <a href="<?= BASEURL; ?>deconnexion.html">Déconnexion</a>
+                </div>
+            </div>
+
+            <div class="mes-notifications">
+                <div class="notification">
+                    <span class="material-icons">beenhere</span>
+                    <div class="contenu">
+                        Une nouvelle réservation a été faite pour votre plat <B>Gratin Dauphinois</B>
+                        <div class="date-notification">Le 18/01/2021 à 14h01</div>
+                    </div>
+                </div>
+                <div class="notification">
+                    <span class="material-icons">star_half</span>
+                    <div class="contenu">
+                        Emilie COUCHOT vient de donner un avis vous concernant
+                        <div class="date-notification">Le 18/01/2021 à 14h01</div>
+                    </div>
+                </div>
+                <div class="notification">
+                    <span class="material-icons">beenhere</span>
+                    <div class="contenu">
+                        Une nouvelle réservation a été faite pour votre plat <B>Tarte au citron meringué</B>
+                        <div class="date-notification">Le 18/01/2021 à 14h01</div>
+                    </div>
                 </div>
             </div>
         <?php 

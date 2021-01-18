@@ -62,3 +62,38 @@ $(document).on('click', '.btn-annuler-reservation', function()
         });
     }
 });
+
+$(document).on('change', '#photo_plat', function()
+{
+    readURL(this);
+});
+
+function readURL(input){
+    if (input.files && input.files[0]) {
+
+        var url = input.value;
+        var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+
+        if (ext == "png" || ext == "jpeg" || ext == "jpg")
+        { 
+            var reader = new FileReader();
+          
+            reader.onload = function(e) {
+                $.post(baseurl + 'inc/apercu_image.php',
+                {
+                    src : e.target.result
+                },
+                function(data)
+                {
+                    $('.bloc-photo-plat').html(data).addClass('has_image');
+                });
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+        else
+        {
+            alert('Vous devez choisir une image au format .jpg, .png ou .jpeg');
+        }
+    }
+}

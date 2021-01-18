@@ -278,6 +278,22 @@ function req_commande_by_id($id_commande)
 	return $req->fetch(PDO::FETCH_ASSOC);
 }
 
+function req_nbr_notifications_by_user($id_utilisateur)
+{
+	$sql = "SELECT COUNT(*) as nbr FROM notifications";
+	$req = db()->prepare($sql);
+	$req->execute();
+	return $req->fetchAll(PDO::FETCH_ASSOC)[0]['nbr'];
+}
+
+function req_nbr_messages_by_user($id_utilisateur)
+{
+	$sql = "SELECT COUNT(*) as nbr FROM messages";
+	$req = db()->prepare($sql);
+	$req->execute();
+	return $req->fetchAll(PDO::FETCH_ASSOC)[0]['nbr'];
+}
+
 function upload_image(array $fichier)
 {
     $max_size = 1000000;
