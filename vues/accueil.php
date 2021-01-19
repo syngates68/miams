@@ -13,7 +13,8 @@ $page_title = "Accueil";
         </div>
         <div class="liste-plats">
             <div class="liste-plats-content">
-                <?php foreach (req_liste_plats() as $p) : ?>
+                <?php $id_utilisateur = (isset($_SESSION['utilisateur'])) ? $_SESSION['utilisateur'] : NULL; ?>
+                <?php foreach (req_liste_plats($id_utilisateur) as $p) : ?>
                     <div class="card">
                         <div class="card-img-top">
                             <img src="<?= BASEURL; ?><?= $p['photo_plat']; ?>">

@@ -20,14 +20,16 @@ if (file_exists('vues/'.$var_page.'.php'))
             <div class="bloc-notifications">
                 <span class="material-icons">notifications_none</span>
                 <?php if (req_nbr_notifications_by_user($_SESSION['utilisateur']) > 0) : ?> 
-                    <div class="notification"></div>
+                    <div class="notification sparkle"></div>
                 <?php endif; ?>
+                <div class="titre">Notifications</div>
             </div>
             <div class="bloc-messages">
                 <span class="material-icons">chat_bubble_outline</span>
                 <?php if (req_nbr_messages_by_user($_SESSION['utilisateur']) > 0) : ?> 
-                    <div class="notification"></div>
+                    <div class="notification sparkle"></div>
                 <?php endif; ?>
+                <div class="titre">Messages</div>
             </div>
             <div class="bloc-utilisateur">
                 <div class="bloc-avatar dropdown-utilisateur">
@@ -55,27 +57,42 @@ if (file_exists('vues/'.$var_page.'.php'))
             </div>
 
             <div class="mes-notifications">
-                <div class="notification">
-                    <span class="material-icons">beenhere</span>
-                    <div class="contenu">
-                        Une nouvelle réservation a été faite pour votre plat <B>Gratin Dauphinois</B>
-                        <div class="date-notification">Le 18/01/2021 à 14h01</div>
+                <?php if (req_nbr_notifications_by_user($_SESSION['utilisateur']) > 0) : ?> 
+                    <?php foreach (req_liste_notifications_by_user($_SESSION['utilisateur']) as $notification) : ?>
+                        <div class="notification">
+                            <span class="material-icons">beenhere</span>
+                            <div class="contenu">
+                                <?= $notification['contenu']; ?>
+                                <div class="date-notification"><?= formate_date_heure($notification['date_notification']); ?></div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <div class="aucune-notification">Vous n'avez aucune notification.</div>
+                <?php endif; ?>
+            </div>
+
+            <div class="mes-messages">
+                <?php if (req_nbr_messages_by_user($_SESSION['utilisateur']) > 0) : ?> 
+                    <div class="message">
+                        <img src="<?= BASEURL; ?>assets/utilisateurs/grogu_pink.png">
+                        <div class="contenu">
+                            <div class="message-de">Emilie COUCHOT</div>
+                            <div class="contenu-message">Bonjour, je vous contacte car j'aimerais savoir si...</div>
+                            <div class="date-message">Le 18/01/2021 à 14h01</div>
+                        </div>
                     </div>
-                </div>
-                <div class="notification">
-                    <span class="material-icons">star_half</span>
-                    <div class="contenu">
-                        Emilie COUCHOT vient de donner un avis vous concernant
-                        <div class="date-notification">Le 18/01/2021 à 14h01</div>
+                    <div class="message">
+                        <img src="<?= BASEURL; ?>assets/utilisateurs/grogu_blue.png">
+                        <div class="contenu">
+                            <div class="message-de">Nathan SCHIFFERLE</div>
+                            <div class="contenu-message">Bonjour Monsieur, j'ai commandé chez vous la dernière fois et...</div>
+                            <div class="date-message">Le 18/01/2021 à 14h01</div>
+                        </div>
                     </div>
-                </div>
-                <div class="notification">
-                    <span class="material-icons">beenhere</span>
-                    <div class="contenu">
-                        Une nouvelle réservation a été faite pour votre plat <B>Tarte au citron meringué</B>
-                        <div class="date-notification">Le 18/01/2021 à 14h01</div>
-                    </div>
-                </div>
+                <?php else : ?>
+                    <div class="aucun-message">Vous n'avez aucun message.</div>
+                <?php endif; ?>
             </div>
         <?php 
         else : 

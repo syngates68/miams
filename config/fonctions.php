@@ -149,9 +149,13 @@ function req_utilisateur_by_id($id)
 	return $req->fetch(PDO::FETCH_ASSOC);
 }
 
-function req_liste_plats()
+function req_liste_plats($id_utilisateur)
 {
-	$sql = "SELECT CONCAT(u.prenom, ' ', u.nom) as vendeur, p.id as id_plat, p.nom as nom_plat, p.prix, p.quantite, p.heure_debut, p.heure_fin, p.date_publication, p.slug, p.adresse, p.code_postal, p.ville, p.photo_plat FROM plats p LEFT JOIN utilisateurs u ON u.id = p.id_utilisateur ORDER BY p.date_publication DESC";
+	$where = '';
+	if ($id_utilisateur != NULL)
+		$where = 'WHERE p.id_utilisateur != '.$id_utilisateur;
+	
+	$sql = "SELECT CONCAT(u.prenom, ' ', u.nom) as vendeur, p.id as id_plat, p.nom as nom_plat, p.prix, p.quantite, p.heure_debut, p.heure_fin, p.date_publication, p.slug, p.adresse, p.code_postal, p.ville, p.photo_plat FROM plats p LEFT JOIN utilisateurs u ON u.id = p.id_utilisateur $where ORDER BY p.date_publication DESC";
 	$req = db()->prepare($sql);
 	$req->execute();
 	
@@ -280,18 +284,51 @@ function req_commande_by_id($id_commande)
 
 function req_nbr_notifications_by_user($id_utilisateur)
 {
-	$sql = "SELECT COUNT(*) as nbr FROM notifications";
+	$sql = "SELECT COUNT(*) as nbr FROM notifications WHERE lu = 0 AND id_utilisateur = :id_utilisateur";
 	$req = db()->prepare($sql);
-	$req->execute();
+	$req->execute([
+		'id_utilisateur' => $id_utilisateur
+	]);
 	return $req->fetchAll(PDO::FETCH_ASSOC)[0]['nbr'];
 }
 
 function req_nbr_messages_by_user($id_utilisateur)
 {
-	$sql = "SELECT COUNT(*) as nbr FROM messages";
+	$sql = "SELECT COUNT(*) as nbr FROM messages WHERE lu = 0 AND id_utilisateur = :id_utilisateur";
 	$req = db()->prepare($sql);
-	$req->execute();
+	$req->execute([
+		'id_utilisateur' => $id_utilisateur
+	]);
 	return $req->fetchAll(PDO::FETCH_ASSOC)[0]['nbr'];
+}
+
+function req_liste_notifications_by_user($id_utilisateur)
+{
+	$sql = "SELECT * FROM notifications WHERE lu = 0 AND id_utilisateur = :id_utilisateur";
+	$req = db()->prepare($sql);
+	$req->execute([
+		'id_utilisateur' => $id_utilisateur
+	]);
+	return $req->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function req_liste_messages_by_user($id_utilisateur)
+{
+	$sql = "SELECT * FROM messages WHERE lu = 0 AND id_utilisateur = :id_utilisateur";
+	$req = db()->prepare($sql);
+	$req->execute([
+		'id_utilisateur' => $id_utilisateur
+	]);
+	return $req->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function update_notification_lue($id_notification)
+{
+	$sql = "UPDATE notifications SET lu = 1 WHERE id = :id";
+	$upd = db()->prepare($sql);
+	$upd->execute([
+		'id' => $id_notification
+	]);
 }
 
 function upload_image(array $fichier)

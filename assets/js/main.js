@@ -4,7 +4,40 @@ $(document).on('click', '.dropdown-utilisateur', function(e)
     if ($('.bloc-dropdown-utilisateur').hasClass('is-active'))
         $('.bloc-dropdown-utilisateur').removeClass('is-active');
     else
-        $('.bloc-dropdown-utilisateur').addClass('is-active')
+        $('.bloc-dropdown-utilisateur').addClass('is-active');
+});
+
+$(document).on('click', '.bloc-notifications .material-icons', function()
+{
+    var top = $('.bloc-notifications').offset().top + $('.bloc-notifications').innerHeight() + 5;
+    var right = $(window).width() - $('.bloc-notifications').offset().left - $('.bloc-notifications').innerWidth();
+
+    if ($('.mes-notifications').hasClass('is-active'))
+        $('.mes-notifications').removeClass('is-active');
+    else
+    {
+        $('.mes-notifications').addClass('is-active');
+        $('.mes-notifications').css('right', right + 'px');
+        $('.mes-notifications').css('top', top + 'px');
+
+        //On marque toutes les notifications comme ayant été lues
+        $.post(baseurl + 'inc/traitement/notifications_lues.php');
+    }
+});
+
+$(document).on('click', '.bloc-messages .material-icons', function()
+{
+    var top = $('.bloc-messages').offset().top + $('.bloc-messages').innerHeight() + 5;
+    var right = $(window).width() - $('.bloc-messages').offset().left - $('.bloc-messages').innerWidth();
+
+    if ($('.mes-messages').hasClass('is-active'))
+        $('.mes-messages').removeClass('is-active');
+    else
+    {
+        $('.mes-messages').addClass('is-active');
+        $('.mes-messages').css('right', right + 'px');
+        $('.mes-messages').css('top', top + 'px');
+    }
 });
 
 $(document).on('keyup', 'input[name="quantite"]', function()

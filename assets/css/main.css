@@ -171,12 +171,15 @@ h1
 {
     padding: 0 16px;
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .navbar .bloc-liens .bloc-notifications .material-icons,
 .navbar .bloc-liens .bloc-messages .material-icons
 {
     font-size: 24px;
+    margin-right: 8px;
 }
 
 .navbar .bloc-liens .bloc-notifications .material-icons:hover,
@@ -185,26 +188,55 @@ h1
     cursor: pointer;
 }
 
+.navbar .bloc-liens .bloc-notifications .titre,
+.navbar .bloc-liens .bloc-messages .titre
+{
+    font-size: 12px;
+    font-weight: 300;
+}
+
 .navbar .bloc-liens .bloc-notifications .notification,
 .navbar .bloc-liens .bloc-messages .notification
 {
     position: absolute;
-    top: 0;
+    top: -2px;
     background: var(--error);
     width: 14px;
     height: 14px;
     border-radius: 100%;
-    border: 2px solid #FFF;
+    transition-duration: .3s;
 }
 
 .navbar .bloc-liens .bloc-notifications .notification
 {
-    right: 13px;
+    right: 87px;
 }
 
 .navbar .bloc-liens .bloc-messages .notification
 {
-    right: 10px;
+    right: 73px;
+}
+
+.navbar .bloc-liens .bloc-notifications .sparkle,
+.navbar .bloc-liens .bloc-messages .sparkle
+{
+    animation-duration: .5s;
+    animation-name: sparkle;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes sparkle
+{
+    from
+    {
+        border: 2px solid #FFF;
+    }
+
+    to
+    {
+        border: 2px solid #fdb5b5;
+    }
 }
 
 .navbar .bloc-liens .bloc-utilisateur
@@ -291,11 +323,12 @@ h1
     color: #000;
 }
 
-.navbar .mes-notifications
+.navbar .mes-notifications,
+.navbar .mes-messages
 {
+    display: none;
     position: absolute;
-    top: 40px;
-    right: 170px;
+    top: 50px;
     background: #FFF;
     border-radius: 5px;
     border: 1px solid var(--border);
@@ -304,7 +337,31 @@ h1
     max-width: 300px;
 }
 
-.navbar .mes-notifications .notification
+.navbar .mes-notifications::before,
+.navbar .mes-messages::before
+{
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 80%;
+    transform: translateX(-50%);
+    z-index: 2;
+    width: 0;
+    height: 0;
+    border-width: 0 5px 10px 5px;
+    border-style: solid;
+    border-color: transparent transparent #FFF transparent;
+    filter: drop-shadow(0 -1px 1px #7a7a7a80);
+}
+
+.navbar .mes-notifications.is-active,
+.navbar .mes-messages.is-active
+{
+    display: block;
+}
+
+.navbar .mes-notifications .notification,
+.navbar .mes-messages .message
 {
     padding: 16px 24px;
     display: flex;
@@ -313,7 +370,8 @@ h1
     border-bottom: 1px solid var(--border);
 }
 
-.navbar .mes-notifications .notification:hover
+.navbar .mes-notifications .notification:hover,
+.navbar .mes-messages .message:hover
 {
     background: var(--bg_grey);
     cursor: pointer;
@@ -326,11 +384,40 @@ h1
     margin-right: 16px;
 }
 
-.navbar .mes-notifications .notification .date-notification
+.navbar .mes-notifications .notification .date-notification,
+.navbar .mes-messages .message .date-message
 {
     color: var(--grey);
     font-size: 11px;
     margin-top: 8px;
+}
+
+.navbar .mes-messages .message img
+{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    margin-right: 16px;
+}
+
+.navbar .mes-messages .message .contenu .message-de
+{
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--write);
+}
+
+.navbar .mes-messages .message .contenu .contenu-message
+{
+    font-size: 11px;
+    color: var(--write);
+}
+
+.navbar .mes-notifications .aucune-notification,
+.navbar .mes-messages .aucun-message
+{
+    padding: 16px 24px;
+    font-size: 12px;
 }
 
 .form-container .row
