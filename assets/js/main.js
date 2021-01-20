@@ -20,6 +20,9 @@ $(document).on('click', '.bloc-notifications .material-icons', function()
         $('.mes-notifications').css('right', right + 'px');
         $('.mes-notifications').css('top', top + 'px');
 
+        //On retire la petite pillule de notifications
+        $('.bloc-notifications .notification').css('display', 'none');
+
         //On marque toutes les notifications comme ayant été lues
         $.post(baseurl + 'inc/traitement/notifications_lues.php');
     }
@@ -37,6 +40,9 @@ $(document).on('click', '.bloc-messages .material-icons', function()
         $('.mes-messages').addClass('is-active');
         $('.mes-messages').css('right', right + 'px');
         $('.mes-messages').css('top', top + 'px');
+
+        //On retire la petite pillule de notifications
+        $('.bloc-messages .notification').css('display', 'none');
     }
 });
 

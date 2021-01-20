@@ -57,6 +57,7 @@ if (file_exists('vues/'.$var_page.'.php'))
             </div>
 
             <div class="mes-notifications">
+                <div class="bloc-titre">Notifications</div>
                 <?php if (req_nbr_notifications_by_user($_SESSION['utilisateur']) > 0) : ?> 
                     <?php foreach (req_liste_notifications_by_user($_SESSION['utilisateur']) as $notification) : ?>
                         <div class="notification">
@@ -73,6 +74,7 @@ if (file_exists('vues/'.$var_page.'.php'))
             </div>
 
             <div class="mes-messages">
+                <div class="bloc-titre">Messages</div>
                 <?php if (req_nbr_messages_by_user($_SESSION['utilisateur']) > 0) : ?> 
                     <div class="message">
                         <img src="<?= BASEURL; ?>assets/utilisateurs/grogu_pink.png">

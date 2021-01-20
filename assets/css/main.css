@@ -360,6 +360,17 @@ h1
     display: block;
 }
 
+.navbar .mes-notifications .bloc-titre,
+.navbar .mes-messages .bloc-titre
+{
+    text-align: center;
+    padding: 8px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--write);
+    border-bottom: 1px solid var(--border);
+}
+
 .navbar .mes-notifications .notification,
 .navbar .mes-messages .message
 {
@@ -418,6 +429,7 @@ h1
 {
     padding: 16px 24px;
     font-size: 12px;
+    color: var(--write);
 }
 
 .form-container .row
