@@ -1,0 +1,47 @@
+{% extends "template.html.twig" %}
+
+{% block content %}
+<div class="container-form">
+    <div class="form-bloc">
+        <h1>Inscription</h1>
+        <form method="POST" action="{{ BASEURL }}connexion">
+            {% if error_connect is defined %}
+                <div class="alert alert-danger">
+                    <span class="material-icons">error</span>
+                    <span class="message">{{ error_connect }}</span>
+                </div>
+            {% endif %}
+            <div class="form-container">
+                <div class="input-form">
+                    <label for="nom">Nom</label>
+                    <input type="text" name="nom" id="nom">
+                </div>
+                <div class="input-form">
+                    <label for="prenom">Prénom</label>
+                    <input type="text" name="prenom" id="prenom">
+                </div>
+                <div class="input-form">
+                    <label for="mail">Adresse mail</label>
+                    <input type="email" name="mail" id="mail">
+                </div>
+                <div class="input-form">
+                    <label for="pass">Mot de passe</label>
+                    <input type="password" name="pass" id="pass">
+                </div>
+                <div class="input-form">
+                    <label for="pass_confirm">Confirmation du mot de passe</label>
+                    <input type="password" name="pass_confirm" id="pass_confirm">
+                </div>
+                <button type="submit" class="button button-primary" name="submit_connexion">S'inscrire</button>
+                <div class="social-bloc">
+                    <button class="button button-social button-facebook"><img src="{{ BASELINK }}assets/img/facebook.svg">Facebook</button>
+                    <button class="button button-social button-google"><img src="{{ BASELINK }}assets/img/google.svg">Google</button>
+                </div>
+            </div>
+        </form>
+        <div class="form-message">
+            <p>Vous possédez déjà un compte ? <a href="{{ BASEURL }}connexion">Connectez-vous ici</a>.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "template.html.twig" %}
+
+{% block content %}
+<div class="container-form">
+    <div class="form-bloc">
+        <h1>Connexion</h1>
+        <form method="POST" action="{{ BASEURL }}connexion">
+            {% if error_connect is defined %}
+                <div class="alert alert-danger">
+                    <span class="material-icons">error</span>
+                    <span class="message">{{ error_connect }}</span>
+                </div>
+            {% endif %}
+            <div class="form-container">
+                <div class="input-form">
+                    <label for="mail">Adresse mail</label>
+                    <input type="email" name="mail" id="mail">
+                </div>
+                <div class="input-form">
+                    <label for="pass">Mot de passe</label>
+                    <input type="password" name="pass" id="pass">
+                    <span class="forgotten-password">Mot de passe oublié ?</span>
+                </div>
+                <div class="input-form">
+                    <input type="checkbox" name="remember_me" id="remember_me">
+                    <label for="remember_me" class="checkbox">Rester connecté</label>
+                </div>
+                <button type="submit" class="button button-primary" name="submit_connexion">Se connecter</button>
+                <div class="social-bloc">
+                    <button class="button button-social button-facebook"><img src="{{ BASELINK }}assets/img/facebook.svg">Facebook</button>
+                    <button class="button button-social button-google"><img src="{{ BASELINK }}assets/img/google.svg">Google</button>
+                </div>
+            </div>
+        </form>
+        <div class="form-message">
+            <p>Vous ne possédez pas encore de compte ? <a href="{{ BASEURL }}inscription">Créez-vous en un ici</a>.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

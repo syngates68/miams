@@ -1,0 +1,115 @@
+@import 'global.css';
+
+.button
+{
+    border-radius: 2px;
+    padding: calc(3 * var(--padding));
+    text-decoration: none;
+    transition-duration: .3s;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.button:disabled,
+.button:disabled:hover
+{
+    background: #a1a1a1;
+    border: 2px solid #a1a1a1;
+    cursor: initial;
+    color: #FFF;
+}
+
+.button:hover
+{
+    transition-duration: .3s;
+    cursor: pointer;
+}
+
+.button .material-icons
+{
+    vertical-align: middle;
+    margin-right: var(--padding);
+}
+
+.button .button-text
+{
+    vertical-align: middle;
+}
+
+.button-primary
+{
+    background: var(--main-complement);
+    color: #FFF;
+    border: 2px solid var(--main-complement);
+}
+
+.button-primary:hover
+{
+    background: none;
+    color: var(--main-complement);
+}
+
+.button-primary-outline
+{
+    background: none;
+    color: var(--main-complement);
+    border: 2px solid var(--main-complement);
+}
+
+.button-primary-outline:hover
+{
+    background: var(--main-complement);
+    color: #FFF;
+}
+
+.button-secondary
+{
+    background: var(--main);
+    color: #FFF;
+    border: 2px solid var(--main);
+}
+
+.button-secondary:hover
+{
+    background: none;
+    color: var(--main);
+}
+
+.button-secondary-outline
+{
+    background: none;
+    color: var(--main);
+    border: 2px solid var(--main);
+}
+
+.button-secondary-outline:hover
+{
+    background: var(--main);
+    color: #FFF;
+}
+
+.button-white
+{
+    background: #FFF;
+    color: var(--main-complement);
+    border: 2px solid #FFF;
+}
+
+.button-white:hover
+{
+    background: none;
+    color: #FFF;
+}
+
+.button-white-outline
+{
+    background: none;
+    color: #FFF;
+    border: 2px solid #FFF;
+}
+
+.button-white-outline:hover
+{
+    background: #FFF;
+    color: var(--main-complement);
+}

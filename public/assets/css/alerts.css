@@ -1,0 +1,51 @@
+@import 'global.css';
+
+.alert
+{
+    padding: calc(4 * var(--padding));
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+    font-weight: 600;
+    margin: calc(4 * var(--padding)) 0;
+    line-height: 1.7;
+    animation-name: down;
+    animation-duration: .3s;
+}
+
+.alert .material-icons
+{
+    margin-right: calc(2 * var(--padding));
+}
+
+.alert-danger
+{
+    color: var(--error);
+    border: 1px solid var(--error);
+}
+
+.alert-info
+{
+    color: var(--info);
+    border: 1px solid var(--info);
+}
+
+.alert-success
+{
+    color: var(--valid);
+    border: 1px solid var(--valid);
+}
+
+@keyframes down
+{
+    from
+    {
+        transform: translateY(-10%);
+    }
+
+    top
+    {
+        transform: translateY(0);
+    }
+}

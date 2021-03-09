@@ -1,0 +1,121 @@
+@import 'global.css';
+
+.input-form
+{
+    padding: calc(3 * var(--padding)) 0;
+}
+
+.input-form label
+{
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 13px;
+}
+
+.input-form label:not(.checkbox)
+{
+    margin-bottom: 8px;
+    display: block;
+}
+
+.input-form input[type="text"],
+.input-form input[type="email"],
+.input-form input[type="password"],
+.input-form select,
+.input-form textarea
+{
+    font-family: 'Inter', 'sans-serif';
+    width: 100%;
+    background: var(--inputs);
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--inputs-border);
+    padding: calc(4 * var(--padding));
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    transition-duration: .3s;
+}
+
+.input-form select option
+{
+    font-family: 'Inter', 'sans-serif';
+    font-size: 17px;
+}
+
+.input-form input[type="text"]:focus,
+.input-form input[type="email"]:focus,
+.input-form input[type="password"]:focus,
+.input-form select:focus,
+.input-form textarea:focus
+{
+    border: 2px solid #a0cbfc;
+    transition-duration: .3s;
+    outline: none;
+}
+
+.input-form .input-radio
+{
+    display: block;
+    padding: calc(2 * var(--padding)) 0;
+}
+
+.input-form .input-radio input
+{
+    display: none;
+}
+
+.input-form .input-radio input + label
+{
+    position: relative;
+    padding-left: calc(25px + calc(3 * var(--padding)));
+    cursor: pointer;
+    transition-duration: .3s;
+}
+
+.input-form .input-radio input + label::before
+{
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition-duration: .3s;
+}
+
+.input-form .input-radio input + label::after
+{
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -1px;
+    left: 4px;
+    width: calc(25px - 6px);
+    height: calc(25px - 6px);
+    border-radius: 100%;
+    background: transparent;
+    transition-duration: .3s;
+}
+
+.input-form .input-radio input:checked + label
+{
+    color: var(--main);
+    transition-duration: .3s;
+}
+
+.input-form .input-radio input:checked + label::before
+{
+    border: 1px solid var(--main);
+    transition-duration: .3s;
+}
+
+.input-form .input-radio input:checked + label::after
+{
+    background: var(--main);
+    transition-duration: .3s;
+}

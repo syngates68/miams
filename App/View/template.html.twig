@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commandez votre repas de ce soir en ligne</title>
+    <link rel="stylesheet" href="{{ BASELINK }}assets/css/main.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+    <script src="{{ BASELINK }}assets/js/librairies/jquery.min.js"></script>
+    <script src="{{ BASELINK }}assets/js/librairies/emoji-button-3.0.3.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="icon" type="image/png" href="{{ BASELINK }}assets/img/favicon.png" />
+    <!--<script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>-->
+    <script src="{{ BASELINK }}assets/ckeditor/ckeditor.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Système de modals -->
+    <script src="{{ BASELINK }}assets/js/librairies/modaal.js"></script>
+    <link rel="stylesheet" href="{{ BASELINK }}assets/css/librairies/modaal.css">
+    <script>
+        var baseurl = "{{ BASEURL }}";
+        var baselink = "{{ BASELINK }}";
+    </script>
+</head>
+<body {% if bg_full is defined %}class="background-full" style="background-image: url('{{ BASELINK }}assets/img/{{ bg_full }}');"{% endif %}>
+    <div class="navbar {% if eggshell is defined %}eggshell-bg{% endif %}" {% if navbar_background is defined %}style="background:{{ navbar_background }}"{% endif %}>
+        <div class="navbar-content">
+            <div class="bloc-logo">
+                <a href="{{ BASEURL }}">
+                    <img src="{{ BASELINK }}assets/img/logo.svg" alt="Logo de MIAMS">
+                </a>
+            </div>
+            <div class="links-block">
+                {% if user is defined %}
+                    <div class="links-block__notifications">
+                        <a href="#">
+                            <span class="material-icons">notifications_none</span>
+                            {% if nbr_notifications is defined and nbr_notifications > 0 %}
+                                <div class="notification sparkle"></div>
+                            {% endif %}
+                            <div class="title">Notifications</div>
+                        </a>
+                    </div>
+                    <div class="links-block__messages">
+                        <a href="{{ BASEURL }}messages/">
+                            <span class="material-icons">chat_bubble_outline</span>
+                            {% if nbr_messages is defined and nbr_messages > 0 %}
+                                <div class="notification sparkle"></div>
+                            {% endif %}
+                            <div class="title">Messages</div>
+                        </a>
+                    </div>
+                    <div class="user-block">
+                        <div class="user-block__avatar">
+                            <img src="{{ BASELINK }}assets/{{ user.get_avatar }}" alt="Photo de profil de {{ user.get_prenom ~ " " ~ user.get_nom }}">
+                        </div>
+                        <span class="user-block__username"><a href="#">{{ user.get_prenom }}</a></span>
+                        <a class="user-block__logout" href="{{ BASEURL }}deconnexion"><span class="material-icons">logout</span></a>
+                    </div>
+                {% else %}
+                    <a href="{{ BASEURL }}connexion" class="button {% if navbar_background is defined %}button-white{% else %}button-primary{% endif %}">Se connecter</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="site-content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script src="{{ BASELINK }}assets/js/main.js"></script>
+</body>
+</html>

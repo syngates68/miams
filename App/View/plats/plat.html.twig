@@ -1,0 +1,153 @@
+{% extends "template.html.twig" %}
+
+{% block content %}
+<div class="dish-container">
+    <div class="dish-container__header">
+        <div class="block-top">
+            <div class="main-informations">
+                <h1 class="dish-name">{{ plat.nom_plat }}</h1>
+                <div class="published-by">Proposé par {{ plat.vendeur }} le {{ plat.date_publication|date('d/m/Y') }}</div>
+            </div>
+            <div class="buttons-block">
+                <button class="button button-white-outline reserver">Réserver votre part</button>
+                <button class="button button-secondary contacter">Contacter vendeur</button>
+            </div>
+        </div>
+        <div class="dish-image-block">
+            <img src="{{ BASELINK  ~ plat.photo_plat }}" alt="Photo du plat">
+        </div>
+    </div>
+    <div class="dish-container__body">
+
+        {# Modal de réservation d'un plat #}
+        <div id="reserver" style="display:none;">
+            <p style="font-size:16px;line-height:2em;color:#08133b;font-weight:600;">
+                Afin de finaliser votre réservation, veuillez remplir les
+                champs ci-dessous.
+                <br/> 
+                Ces informations seront transmises au
+                vendeur de ce plat.
+            </p>
+            <div class="form-container">
+                <div class="alert alert-danger" id="alert_commande" style="display:none;">
+                    <span class="material-icons">error</span>
+                    <span class="message"></span>
+                </div>
+                <form id="form_reservation" action="{{ BASEURL }}plats/valider_reservation" method="POST">
+                    <input type="hidden" name="id_plat" value="{{ plat.id_plat }}">
+                    <input type="hidden" name="prix" value="{{ plat.prix }}">
+                    <div class="row l6 s12">
+                        <div class="input-form">
+                            <label for="quantite">Quantité souhaitée</label>
+                            <input type="text" name="quantite" id="quantite">
+                        </div>
+                        <div class="input-form">
+                            <label for="heure">Heure souhaitée de récupération</label>
+                            <select name="heure" id="heure">
+                                {% for j in 0.. nbr_heures - 1 %}
+                                    <option value="{{ heures[j] }}">{{ heures[j] }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <p style="font-size:12px;line-height:2em;">
+                        Total : <span class="montant">0</span>€
+                    </p>
+                    <p style="font-size:16px;line-height:2em;color:#08133b;font-weight:600;">
+                        L'heure souhaitée n'est indiquée qu'à titre informatif,
+                        afin que le vendeur puisse s'organiser au mieux pour la
+                        récupération des plats réservés.
+                    </p>
+                    <button class="button button-primary" name="submit_reservation">Valider la réservation</button>
+                </form>
+            </div>
+        </div>
+
+        {# Modal de contact #}
+        <div id="contacter" style="display:none;">
+            <p style="font-size:24px;color:#08133b;font-weight:600;padding:0;margin:0;">Envoyer un message à {{ plat.vendeur }}</p>
+            <div class="alert alert-danger" id="alert_message" style="display:none;">
+                <span class="material-icons">error</span>
+                <span class="message"></span>
+            </div>
+            <div class="alert alert-success" id="success_message" style="display:none;">
+                <span class="material-icons">check</span>
+                <span class="message"></span>
+            </div>
+            <div class="form-container">
+                <form action="{{ BASEURL }}messages/envoi_message" method="POST" id="form_envoi_message">
+                    <div class="row">
+                        <div class="input-form">
+                            <div class="count"><span id="chars">0</span>/100</div>
+                            <textarea name="message" style="resize:none;min-height:300px;line-height:2em;" placeholder="Bonjour, je souhaiterais avoir des informations complémentaires sur votre plat..."></textarea>
+                        </div>
+                    </div>
+                    <button class="button button-primary" style="width:100%;" name="submit_message" type="submit" disabled><span class="material-icons">send</span><span class="button-text">Envoyer</span></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="block-content">
+            <a href="{{ BASELINK  ~ plat.photo_plat }}" class="see-picture">Agrandir la photo</a>
+            <div class="informations">
+                <p class="dish-container-title">Informations :</p>
+                <div class="dish-price">{{ plat.prix }}€<span class="unity">/unité</span></div>
+                <div class="dish-quantity">Reste {{ plat.quantite }}</div>
+                <div class="dish-hours">Disponible de {{ plat.heure_debut }} à {{ plat.heure_fin }}</div>
+                <div class="dish-address">{{ plat.adresse ~ ' ' ~ plat.ville ~ ' ' ~ plat.code_postal }}</div>
+                <div class="dish-map">
+                    <img src="{{ BASELINK }}assets/img/map.png" alt="Adresse du vendeur">
+                </div>
+            </div>
+            <div class="more-informations">
+                <p class="dish-container-title">Informations supplémentaires :</p>
+                {% if plat.informations_supplementaires != NULL %}
+                    <div class="more-informations__text">
+                        {{ plat.informations_supplementaires|raw }}
+                    </div>
+                {% else %}
+                    <span>Aucune information supplémentaire</span>
+                {% endif %}
+            </div>
+            <div class="alert alert-info">
+                <span class="material-icons">info</span>
+                <span class="message">
+                    Si vous êtes victimes d'allergies ou d'intolérence à un aliment, 
+                    n'hésitez pas à contacter le vendeur afin de savoir si le plat 
+                    ne représente aucun danger pour votre santé.
+                </span>
+            </div>
+            <div class="dish-seller">
+                <p class="dish-container-title">Vendeur :</p>
+                <div class="seller-block">
+                    <div class="seller-avatar">
+                        <img src="{{ BASELINK }}assets/{{ plat.photo_vendeur }}" alt="Photo de {{ plat.vendeur }}">
+                    </div>
+                    <div class="seller-informations">
+                        <p class="seller-name">{{ plat.vendeur }}</p>
+                        <p class="member-since">Membre depuis le 01/01/2021</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ BASELINK }}assets/js/plats.js"></script>
+<script>
+    //Envisager de les ouvrir avec AJAX pour recharger le contenu à chaque fois
+    $('.reserver').modaal({
+        content_source: '#reserver',
+        animation_speed : 100,
+        width: 700
+    });
+    $('.contacter').modaal({
+        content_source: '#contacter',
+        animation_speed : 100,
+        width: 500
+    });
+    $('.see-picture').modaal({
+        type: 'image',
+        animation_speed : 100
+    });
+</script>
+{% endblock %}

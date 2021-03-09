@@ -1,0 +1,75 @@
+{% extends "template.html.twig" %}
+
+{% block content %}
+    <div class="home-container">
+        <div class="home-container__header">
+            <div class="home-header">
+                <h1>Ne soyez plus limités par la distance</h1>
+                <p class="subtitle">
+                    Lorem ipsum dolor sit, amet consectetur 
+                    adipisicing elit. Fugiat impedit accusantium debitis 
+                    laudantium harum iure minus itaque, architecto, 
+                    consectetur officia, ipsa hic! Illo ab fuga quidem 
+                    quos sunt, provident ex!
+                </p>
+                <a href="{{ BASEURL }}plats/liste" class="button button-secondary">Liste des plats</a>
+            </div>
+            <div class="home-image">
+                <img src="{{ BASELINK }}assets/img/bg-register.jpg" />
+            </div>
+        </div>
+        <div class="home-container__information">
+            <h2>Commandez ou proposez vos plats simplement</h2>
+            <p class="subtitle">
+                Miams vous permet de commander ou de proposer des plats, de particulier
+                à particulier pour ne plus être limités aux grandes villes.
+            </p>
+        </div>
+        <div class="home-container__explanations">
+            <div class="explanation-block">
+                <div class="icon"><span class="material-icons">person</span></div>
+                <div class="title">Titre 1</div>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing 
+                    elit. Illum, nobis aut doloremque obcaecati nostrum 
+                    voluptate architecto repudiandae cupiditate incidunt 
+                    quae, minima eos eligendi minus tempora dignissimos 
+                    suscipit aliquam ratione necessitatibus!
+                </p>
+            </div>
+            <div class="explanation-block">
+                <div class="icon"><span class="material-icons">restaurant</span></div>
+                <div class="title">Titre 2</div>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing 
+                    elit. Illum, nobis aut doloremque obcaecati nostrum 
+                    voluptate architecto repudiandae cupiditate incidunt 
+                    quae, minima eos eligendi minus tempora dignissimos 
+                    suscipit aliquam ratione necessitatibus!
+                </p>
+            </div>
+            <div class="explanation-block">
+                <div class="icon"><span class="material-icons">euro</span></div>
+                <div class="title">Titre 3</div>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing 
+                    elit. Illum, nobis aut doloremque obcaecati nostrum 
+                    voluptate architecto repudiandae cupiditate incidunt 
+                    quae, minima eos eligendi minus tempora dignissimos 
+                    suscipit aliquam ratione necessitatibus!
+                </p>
+            </div>
+            <div class="explanation-block">
+                <div class="icon"><span class="material-icons">timer</span></div>
+                <div class="title">Titre 4</div>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing 
+                    elit. Illum, nobis aut doloremque obcaecati nostrum 
+                    voluptate architecto repudiandae cupiditate incidunt 
+                    quae, minima eos eligendi minus tempora dignissimos 
+                    suscipit aliquam ratione necessitatibus!
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

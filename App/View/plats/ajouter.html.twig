@@ -1,0 +1,116 @@
+{% extends "template.html.twig" %}
+
+{% block content %}
+
+<div class="add-dish-container">
+    <div class="add-dish-container__top">
+        <div class="block-top">
+            <h1>Proposez votre plat</h1>
+            <p class="subtitle">Renseignez les champs ci-dessous<br/>pour proposer votre plat.</p>
+        </div>
+    </div>
+    <div class="add-dish-container__body">
+        <div class="block-content">
+            <form method="POST" action="{{ BASEURL }}plats/ajouter" id="add-dish-form" enctype="multipart/form-data">
+                {% if error_add is defined %}
+                    <div class="alert alert-danger">
+                        <span class="material-icons">error</span>
+                        <span class="message">{{ error_add }}</span>
+                    </div>
+                {% endif %}
+                <div class="step">
+                    <div class="step-title">Informations sur le plat</div>
+                    <div class="dish-informations">
+                        <div class="main-informations">
+                            <div class="input-form">
+                                <label for="nom_plat">Nom de votre plat</label>
+                                <input type="text" name="nom_plat" id="nom_plat" {% if _inputs['_nom_plat'] is defined %}value="{{ _inputs['_nom_plat'] }}"{% endif %}>
+                            </div>
+                            <div class="input-form">
+                                <div class="input-radio">
+                                    <input type="radio" name="type_plat" id="type_plat_1" value="1" {% if _inputs['_type_plat'] is defined and _inputs['_type_plat'] == 1 %}checked{% endif %}>
+                                    <label for="type_plat_1" class="checkbox">Entrée</label>
+                                </div>
+                                <div class="input-radio">
+                                    <input type="radio" name="type_plat" id="type_plat_2" value="2" {% if _inputs['_type_plat'] is defined and _inputs['_type_plat'] == 2 %}checked{% endif %}>
+                                    <label for="type_plat_2" class="checkbox">Plat</label>
+                                </div>
+                                <div class="input-radio">
+                                    <input type="radio" name="type_plat" id="type_plat_3" value="3" {% if _inputs['_type_plat'] is defined and _inputs['_type_plat'] == 3 %}checked{% endif %}>
+                                    <label for="type_plat_3" class="checkbox">Dessert</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dish-picture" id="dish-picture">
+                            <div class="block-add-picture" onclick="$('#photo-plat').click()">
+                                <div class="clickable">
+                                    <span class="material-icons">panorama</span>
+                                    <p>Cliquez ci-dessous ou glissez votre photo</p>
+                                </div>
+                            </div>
+                            <input type="file" name="photo_plat" id="photo-plat" style="display:none;">
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Informations sur la vente</div>
+                    <div class="row l6 s12">
+                        <div class="input-form">
+                            <label for="heure_debut">heure de début</label>
+                            <select name="heure_debut" id="heure_debut">
+                                {% for i in 0.. heures|length - 1 %}
+                                    <option value="{{ heures[i] }}" {% if _inputs['_heure_debut'] is defined and _inputs['_heure_debut'] == heures[i] %}selected{% endif %}>{{ heures[i] }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="input-form">
+                            <label for="heure_fin">Heure de fin</label>
+                            <select name="heure_fin" id="heure_fin">
+                                {% for i in 0.. heures|length - 1 %}
+                                    <option value="{{ heures[i] }}" {% if _inputs['_heure_fin'] is defined and _inputs['_heure_fin'] == heures[i] %}selected{% endif %}>{{ heures[i] }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row l6 s12">
+                        <div class="input-form">
+                            <label for="prix">Prix</label>
+                            <input type="text" name="prix" id="prix" {% if _inputs['_prix'] is defined %}value="{{ _inputs['_prix'] }}"{% endif %}>
+                        </div>
+                        <div class="input-form">
+                            <label for="quantite">Quantité</label>
+                            <input type="text" name="quantite" id="quantite" {% if _inputs['_quantite'] is defined %}value="{{ _inputs['_quantite'] }}"{% endif %}>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Localisation</div>
+                    <div class="input-form">
+                        <label for="adresse">Adresse</label>
+                        <input type="text" name="adresse" id="adresse" {% if _inputs['_adresse'] is defined %}value="{{ _inputs['_adresse'] }}"{% endif %}>
+                    </div>
+                    <div class="row l6 s12">
+                        <div class="input-form">
+                            <label for="code_postal">Code Postal</label>
+                            <input type="text" name="code_postal" id="code_postal" value="68127">
+                        </div>
+                        <div class="input-form">
+                            <label for="ville">Ville</label>
+                            <input type="text" name="ville" id="ville" value="Niederhergheim">
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Informations supplémentaires</div>
+                    <div class="input-form">
+                        <textarea name="informations_supplementaires" id="informations_supplementaires">{% if _inputs['_informations_supplementaires'] is defined %}{{ _inputs['_informations_supplementaires']|raw }}{% endif %}</textarea>
+                    </div>
+                </div>
+                <button class="button button-primary">Proposer votre plat</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="{{ BASELINK }}assets/js/ajouter_plat.js"></script>
+
+{% endblock %}

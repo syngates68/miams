@@ -1,0 +1,28 @@
+{% extends "template.html.twig" %}
+
+{% block content %}
+<div class="messages-container">
+    <div class="messages-container__top">
+        <div class="block-top">
+            <h1>Mes messages</h1>
+        </div>
+    </div>
+    <div class="messages-container__body">
+        <div class="messages-list">
+            {% for m in messages %}
+                <div class="message-block {% if m.lu == 0 %}not-read{% endif %}">
+                    <div class="main-block">
+                        <div class="send-by">{{ m.utilisateur_envoi }}</div>
+                        <div class="message-content">{{ m.contenu }}</div>
+                    </div>
+                    <div class="send-at">{{ m.date_message }}</div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="messages-discussion">
+            Coucou
+        </div>
+    </div>
+</div>
+<script src="{{ BASELINK }}assets/js/messages.js"></script>
+{% endblock %}
